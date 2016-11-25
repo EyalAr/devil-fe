@@ -3,7 +3,7 @@ var webpack = require("webpack"),
     path = require("path");
 
 module.exports = {
-  entry: "src/index.js",
+  entry: "./src/index.js",
   module: {
     loaders: [{
       test: /\.js$/,
@@ -33,21 +33,10 @@ module.exports = {
     new webpack.SourceMapDevToolPlugin(
       "[file].map", null, "../[resource-path]", "../[resource-path]"
     ),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "common",
-      filename: "common.[chunkhash].js"
-    }),
     new HtmlWebpackPlugin({
-      title: "App 1",
-      filename: "app1/index.html",
-      template: "./index.tpl",
-      excludeChunks: ["app2/index"]
-    }),
-    new HtmlWebpackPlugin({
-      title: "App 2",
-      filename: "app2/index.html",
-      template: "./index.tpl",
-      excludeChunks: ["app1/index"]
+      title: "Devil",
+      filename: "index.html",
+      template: "./src/index.tpl"
     })
   ]
 };
