@@ -7,6 +7,6 @@ const App = props => (
   </div>
 )
 
-App.displayName = "App"
+App.displayName = "UI/App"
 
 export default App

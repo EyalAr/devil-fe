@@ -1,10 +1,10 @@
 import React from "react"
 import { Route, IndexRedirect } from "react-router"
-import App from "../ui/App"
-import About from "../ui/About"
-import SignIn from "../ui/SignIn"
-import Post from "../ui/Post"
-import Posts from "../ui/Posts"
+import App from "../containers/App"
+import About from "../containers/About"
+import SignIn from "../containers/SignIn"
+import Post from "../containers/Post"
+import Posts from "../containers/Posts"
 
 export default (
   <Route path="/" component={App}>
@@ -12,6 +12,6 @@ export default (
     <Route path="/posts/:page/:sort" component={Posts}/>
     <Route path="/post/:id/:page/:mode/:sort" component={Post}/>
     <Route path="/signIn/:token" component={SignIn}/>
-    <Route path="/about" component={About}/>
+    <Route path="/about" component={About} name={"eyal"}/>
   </Route>
 )
