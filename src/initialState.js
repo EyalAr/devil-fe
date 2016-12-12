@@ -3,19 +3,21 @@ import { Map, List } from "immutable"
 export default {
   data: Map({
     posts: Map({
-      loading: false,
+      loading: true,
       loadingError: null,
       page: 0,
       loaded: List(),
       updatedAt: 0
     }),
     post: Map({
-      loading: false,
-      loadingError: null
+      loading: true,
+      loadingError: null,
+      loaded: List()
     }),
     user: Map({
       loggedIn: false,
-      token: null
+      token: null,
+      posts: List()
     }),
     entities: Map({
       posts: Map({}),

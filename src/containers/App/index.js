@@ -1,5 +1,5 @@
 import { connect } from "react-redux"
-import AppUI from "../ui/App"
+import AppUI from "../../ui/App"
 
 const mapStateToProps = state => {
   return {}

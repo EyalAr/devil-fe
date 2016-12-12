@@ -5,13 +5,13 @@ import api from "../middleware/api"
 import rootReducer from "../reducers"
 
 const logger = createLogger({
-  stateTransformer: state => state.data.toJS()
+  stateTransformer: state => Object.assign({}, state, { data: state.data.toJS() })
 });
 
 const configureStore = preloadedState => createStore(
   rootReducer,
   preloadedState,
-  applyMiddleware(logger, thunk, api)
+  applyMiddleware(thunk, api, logger)
 )
 
 export default configureStore

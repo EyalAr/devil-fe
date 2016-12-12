@@ -1,39 +1,41 @@
-export default ({ page, sort }) => {
+const users = {
+  "1": {
+    id: "1",
+    username: "bob123",
+    posts: ["3"]
+  },
+  "2": {
+    id: "2",
+    username: "alice_cooper_2nd",
+    posts: ["1"]
+  },
+  "3": {
+    id: "3",
+    username: "money_monkey",
+    posts: ["2"]
+  }
+}
+
+export default ({ id, page, sort }) => {
   return new Promise(resolve => {
     setTimeout(() => resolve({
       time: Date.now(),
-      page: page,
-      loaded: ["1", "2", "3"],
+      page, id, sort,
+      username: users[id].username,
+      posts: users[id].posts,
       entities: {
         posts: {
           "1": {
             id: "1",
-            user: "2",
             title: "JS vs Assembler in real world applications"
           },
           "2": {
             id: "2",
-            user: "3",
             title: "Running ES6 on IE3"
           },
           "3": {
             id: "3",
-            user: "1",
             title: "Running JS on my microwave"
-          }
-        },
-        users: {
-          "1": {
-            id: "1",
-            username: "bob123"
-          },
-          "2": {
-            id: "2",
-            username: "alice_cooper_2nd"
-          },
-          "3": {
-            id: "3",
-            username: "money_monkey"
           }
         }
       }

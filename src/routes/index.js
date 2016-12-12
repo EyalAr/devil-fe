@@ -1,9 +1,8 @@
 import React from "react"
-import { Route, IndexRedirect } from "react-router"
+import { Route, IndexRedirect, Redirect } from "react-router"
 import App from "../containers/App"
-import About from "../containers/About"
-import SignIn from "../containers/SignIn"
 import Post from "../containers/Post"
+import User from "../containers/User"
 import Posts from "../containers/Posts"
 
 export default (
@@ -11,7 +10,8 @@ export default (
     <IndexRedirect to="/posts/1/top"/>
     <Route path="/posts/:page/:sort" component={Posts}/>
     <Route path="/post/:id/:page/:mode/:sort" component={Post}/>
-    <Route path="/signIn/:token" component={SignIn}/>
-    <Route path="/about" component={About} name={"eyal"}/>
+    <Redirect from="/post/:id" to="/post/:id/1/tree/top"/>
+    <Route path="/user/:id/:page/:sort" component={User}/>
+    <Redirect from="/user/:id" to="/user/:id/1/top"/>
   </Route>
 )
