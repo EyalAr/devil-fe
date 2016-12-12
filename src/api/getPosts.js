@@ -6,14 +6,16 @@ export default params => {
       page: page,
       loaded: ["1", "2", "3"],
       entities: {
-        "1": {
-          title: "JS vs Assembler in real world applications"
-        },
-        "2": {
-          title: "Running ES6 on IE3"
-        },
-        "3": {
-          title: "Running JS on my microwave"
+        posts: {
+          "1": {
+            title: "JS vs Assembler in real world applications"
+          },
+          "2": {
+            title: "Running ES6 on IE3"
+          },
+          "3": {
+            title: "Running JS on my microwave"
+          }
         }
       }
     }), 2000)

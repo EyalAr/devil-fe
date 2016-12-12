@@ -9,11 +9,18 @@ export default {
       loaded: List(),
       updatedAt: 0
     }),
-    post: Map({}),
-    users: Map({}),
+    post: Map({
+      loading: false,
+      loadingError: null
+    }),
     user: Map({
       loggedIn: false,
       token: null
+    }),
+    entities: Map({
+      posts: Map({}),
+      users: Map({}),
+      comments: Map({})
     })
   })
 }

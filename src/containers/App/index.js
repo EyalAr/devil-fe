@@ -1,25 +1,18 @@
-import React, { Component } from "react"
+import { connect } from "react-redux"
 import AppUI from "../ui/App"
 
-class App extends Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      data: Map({
-
-      })
-    }
-  }
-
-  onViewChangeRequest (view, params) {}
-
-  render () {
-    return (
-      <AppUI
-        onViewChangeRequest={this.onViewChangeRequest}/>
-    )
-  }
+const mapStateToProps = state => {
+  return {}
 }
+
+const mapDispatchToProps = dispatch => {
+  return {}
+}
+
+const App = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AppUI)
 
 App.displayName = "Containers/App"
 
