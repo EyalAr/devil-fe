@@ -5,7 +5,7 @@ const User = props => (
   props.loading ?
     <div>Loading...</div> :
     <div>
-      <h1>{props.username}</h1>
+      <h1>{props.name}</h1>
       <h2>Posts:</h2>
       <ol>
         {

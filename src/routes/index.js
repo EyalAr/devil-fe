@@ -4,6 +4,7 @@ import App from "../containers/App"
 import Post from "../containers/Post"
 import User from "../containers/User"
 import Posts from "../containers/Posts"
+import Login from "../containers/Login"
 
 export default (
   <Route path="/" component={App}>
@@ -13,5 +14,6 @@ export default (
     <Redirect from="/post/:id" to="/post/:id/1/tree/top"/>
     <Route path="/user/:id/:page/:sort" component={User}/>
     <Redirect from="/user/:id" to="/user/:id/1/top"/>
+    <Route path="/login(/:token)" component={Login}/>
   </Route>
 )

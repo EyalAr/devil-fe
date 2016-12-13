@@ -5,6 +5,11 @@ import * as getPostRequest from "./getPostRequest"
 import * as getPostResponse from "./getPostResponse"
 import * as getUserRequest from "./getUserRequest"
 import * as getUserResponse from "./getUserResponse"
+import * as toggleExpandedComment from "./toggleExpandedComment"
+import * as loginRequest from "./loginRequest"
+import * as loginResponse from "./loginResponse"
+import * as logout from "./logout"
+import * as toggleSubmitPost from "./toggleSubmitPost"
 
 const REDUCERS = [
   getPostsRequest,
@@ -12,7 +17,12 @@ const REDUCERS = [
   getPostRequest,
   getPostResponse,
   getUserRequest,
-  getUserResponse
+  getUserResponse,
+  toggleExpandedComment,
+  loginRequest,
+  loginResponse,
+  logout,
+  toggleSubmitPost
 ]
 
 export default (state, action) => {

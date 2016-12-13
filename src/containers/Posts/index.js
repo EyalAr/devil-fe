@@ -9,8 +9,8 @@ class PostsContainer extends Component {
   }
 
   componentDidMount () {
-    const { page, sort, loadPosts } = this.props
-    loadPosts(page, sort)
+    const { params, loadPosts } = this.props
+    loadPosts(params.page, params.sort)
   }
 
   render () {
@@ -22,16 +22,22 @@ class PostsContainer extends Component {
 
 const mapStateToProps = (state, props) => {
   const data = state.data
-  const { page, sort } = props.params
-  const loading = data.getIn(["posts", "loading"])
-  const loadingError = data.getIn(["posts", "loadingError"])
-  const updatedAt = data.getIn(["posts", "updatedAt"])
-  const users = data.getIn(["entities", "users"])
-  const loaded = data.getIn(["posts", "loaded"]).map(id => {
-    const post = data.getIn(["entities", "posts", id])
+  const postsList = data.getIn(["views", "postsList"])
+  const entities = data.get("entities")
+  const users = entities.get("users")
+
+  const loading = postsList.get("loading")
+  if (loading) return { loading }
+
+  const loadingError = postsList.get("loadingError")
+  if (loadingError) return { loadingError }
+
+  const updatedAt = postsList.get("updatedAt")
+  const posts = postsList.get("posts").map(id => {
+    const post = entities.getIn(["posts", id])
     return post.set("user", users.get(post.get("user")))
   }).toJS()
-  return { page, sort, loading, loadingError, updatedAt, loaded }
+  return { updatedAt, posts }
 }
 
 const mapDispatchToProps = dispatch => {

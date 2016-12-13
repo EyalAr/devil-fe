@@ -9,10 +9,11 @@ const Posts = props => (
         "Loading..." :
         <ol>
           {
-            props.loaded.map(p => (
+            props.posts.map(p => (
               <li key={p.id}>
-                <Link to={`/post/${p.id}`}>{p.title}</Link>
-                (<Link to={`/user/${p.user.id}`}>{p.user.username}</Link>)
+                <a href={p.url}>{p.title}</a>
+                <Link to={`/post/${p.id}`}>[comments]</Link>
+                (<Link to={`/user/${p.user.id}`}>{p.user.name}</Link>)
               </li>
             ))
           }
