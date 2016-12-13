@@ -6,18 +6,20 @@ const Posts = props => (
     <h1>Posts</h1>
     {
       props.loading ?
-        "Loading..." :
-        <ol>
-          {
-            props.posts.map(p => (
-              <li key={p.id}>
-                <a href={p.url}>{p.title}</a>
-                <Link to={`/post/${p.id}`}>[comments]</Link>
-                (<Link to={`/user/${p.user.id}`}>{p.user.name}</Link>)
-              </li>
-            ))
-          }
-        </ol>
+        <div>"Loading..."</div> :
+        props.loadingError ?
+          <div>{props.loadingError}</div> :
+          <ol>
+            {
+              props.posts.map(p => (
+                <li key={p.id}>
+                  <a href={p.url}>{p.title}</a>
+                  <Link to={`/post/${p.id}`}>[comments]</Link>
+                  (<Link to={`/user/${p.user.id}`}>{p.user.name}</Link>)
+                </li>
+              ))
+            }
+          </ol>
     }
   </div>
 )
