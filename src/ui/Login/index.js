@@ -7,6 +7,7 @@ import RaisedButton from "material-ui/RaisedButton"
 import style from "./style.css"
 
 const ENTER_KEY = 13
+const Message = props => (<div className={style.message}>{props.children}</div>)
 
 const Login = props => {
   var value = ""
@@ -15,7 +16,6 @@ const Login = props => {
   const onKeyPress = e => e.keyCode === ENTER_KEY && submit()
   const onChange = e => value = e.target.value
 
-  const Message = props => (<div className={style.message}>{props.children}</div>)
   const CancelButton = () => (<RaisedButton label="Cancel" onClick={props.toggleLogin}/>)
   const RegisterButton = () => (<RaisedButton label="Register" onClick={props.toggleRegister}/>)
   const SubmitButton = () => (<RaisedButton label="Submit" onClick={submit}/>)

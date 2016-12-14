@@ -4,6 +4,7 @@ import TextField from "material-ui/TextField"
 import RaisedButton from "material-ui/RaisedButton"
 
 const ENTER_KEY = 13
+const Message = props => (<div className={style.message}>{props.children}</div>)
 
 const SubmitPost = props => {
   var title = ""

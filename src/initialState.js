@@ -17,8 +17,8 @@ export default {
         updatedAt: 0
       }),
       post: Map({
-        loading: true,
-        loadingError: null,
+        pending: true,
+        error: null,
         comments: List()
       }),
       user: Map({

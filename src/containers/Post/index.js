@@ -40,11 +40,11 @@ const mapStateToProps = (state, props) => {
     })
   }
 
-  const loading = post.get("loading")
-  if (loading) return { loading }
+  const pending = post.get("pending")
+  if (pending) return { pending }
 
-  const loadingError = post.get("loadingError")
-  if (loadingError) return { loadingError }
+  const error = post.get("error")
+  if (error) return { error }
 
   const title = post.get("title")
   const url = post.get("url")

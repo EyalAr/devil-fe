@@ -3,6 +3,8 @@ import LinearProgress from "material-ui/LinearProgress"
 import { List } from "material-ui/List"
 import PostEntry from "../PostEntry"
 
+const Message = props => (<div className={style.message}>{props.children}</div>)
+
 const Posts = props => (
   <div>
     { props.pending && <LinearProgress mode="indeterminate"/> }

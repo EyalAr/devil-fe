@@ -1,34 +1,38 @@
 import React from "react"
 import { Link } from "react-router"
+import LinearProgress from "material-ui/LinearProgress"
+import FlatButton from "material-ui/FlatButton"
 import Comment from "../Comment"
+import style from "./style.css"
+
+const Message = props => (<div className={style.message}>{props.children}</div>)
 
 const Post = props => (
-  props.loading ?
-    <div>Loading...</div> :
-    props.loadingError ?
-      <div>{props.loadingError}</div> :
+  <div>
+    { props.pending && <LinearProgress mode="indeterminate"/> }
+    { !props.pending && props.error && <Message>{props.error}</Message> }
+    { !props.pending && !props.error && (
       <div>
-        <h1><a href={props.url}>{props.title}</a></h1>
-        By: <Link to={`/user/${props.user.id}`}>{props.user.name}</Link>
-        <h2>Comments:</h2>
-        <ol>
-          {
-            props.comments.map(c => {
-              var expanded = true
-              return (
-                <Comment
-                  key={c.id}
-                  id={c.id}
-                  text={c.text}
-                  user={c.user}
-                  children={c.children}
-                  expanded={c.expanded}
-                  toggleExpanded={props.toggleExpandedComment}/>
-              )
-            })
-          }
-        </ol>
+        <div className={style.title}>
+          <a href={props.url}>{props.title}</a>
+        </div>
+        <div className={style.subtitle}>
+          By <Link to={`/user/${props.user.id}`}>{props.user.name}</Link>
+        </div>
+        <FlatButton label="Comment"/>
+        {props.comments.map(c => (
+          <Comment
+            key={c.id}
+            id={c.id}
+            text={c.text}
+            user={c.user}
+            children={c.children}
+            expanded={c.expanded}
+            toggleExpanded={props.toggleExpandedComment}/>
+        ))}
       </div>
+    ) }
+  </div>
 )
 
 Post.displayName = "UI/Post"
