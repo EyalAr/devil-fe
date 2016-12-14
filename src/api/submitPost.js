@@ -3,12 +3,13 @@ import { normalize } from "normalizr"
 import { HOST, POST_SCHEMA } from "./config"
 
 export default ({ title, url }, token) => {
+  const form = new FormData()
+  form.append("title", title)
+  form.append("url", url)
+  form.append("token", token)
   return fetch(resolve(HOST, "posts"), {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ title, url, token })
+    body: form
   })
     .then(response => response.ok ?
       response.json() :

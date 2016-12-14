@@ -16,7 +16,7 @@ const App = props => (
     </div>
     {props.children}
     {
-      props.submitPostView.visible ?
+      props.loggedIn && props.submitPostView.visible ?
         <SubmitPost
           pending={props.submitPostView.pending}
           error={props.submitPostView.submitError}

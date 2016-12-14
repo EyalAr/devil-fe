@@ -2,12 +2,11 @@ import { resolve } from "url"
 import { HOST } from "./config"
 
 export default ({ email }) => {
+  const form = new FormData()
+  form.append("email", email)
   return fetch(resolve(HOST, "users/request_signin_link"), {
     method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({ email })
+    body: form
   })
     .then(response => response.ok ?
       response.json() :
