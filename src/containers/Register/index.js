@@ -2,6 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import RegisterUI from "../../ui/Register"
 import apiRegisterRequest from "../../actions/apiRegisterRequest"
+import toggleRegister from "../../actions/toggleRegister"
 
 const mapStateToProps = (state, props) => {
   const data = state.data
@@ -13,7 +14,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    register: (email, name) => dispatch(apiRegisterRequest(email, name))
+    register: (email, name) => dispatch(apiRegisterRequest(email, name)),
+    toggleRegister: () => dispatch(toggleRegister())
   }
 }
 
