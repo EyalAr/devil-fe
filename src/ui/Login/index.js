@@ -1,7 +1,6 @@
 import React from "react"
 import isemail from "validator/lib/isEmail"
 import { Link } from "react-router"
-import Paper from "material-ui/Paper"
 import LinearProgress from "material-ui/LinearProgress"
 import TextField from "material-ui/TextField"
 import RaisedButton from "material-ui/RaisedButton"

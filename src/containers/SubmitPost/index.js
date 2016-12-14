@@ -2,6 +2,7 @@ import React from "react"
 import { connect } from "react-redux"
 import SubmitPostUI from "../../ui/SubmitPost"
 import apiSubmitPostRequest from "../../actions/apiSubmitPostRequest"
+import toggleSubmitPost from "../../actions/toggleSubmitPost"
 
 const mapStateToProps = (state, props) => {
   const data = state.data
@@ -12,7 +13,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    submit: (title, url) => dispatch(apiSubmitPostRequest(title, url))
+    submit: (title, url) => dispatch(apiSubmitPostRequest(title, url)),
+    toggleSubmitPost: () => dispatch(toggleSubmitPost())
   }
 }
 

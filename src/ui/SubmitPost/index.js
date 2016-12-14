@@ -1,29 +1,44 @@
 import React from "react"
+import LinearProgress from "material-ui/LinearProgress"
+import TextField from "material-ui/TextField"
+import RaisedButton from "material-ui/RaisedButton"
 
 const ENTER_KEY = 13
 
 const SubmitPost = props => {
   var title = ""
   var url = ""
-  const submit = (title, url) => {
-    if (title && url) props.submit(title, url)
-  }
-  const onKeyPress = e => {
-    if (e.keyCode === ENTER_KEY) submit(title, url)
-  }
+
+  const submit = () => title && url && props.submit(title, url)
+  const onKeyPress = e => e.keyCode === ENTER_KEY && submit()
   const onTitleChange = e => title = e.target.value
   const onUrlChange = e => url = e.target.value
 
+  const CancelButton = () => (<RaisedButton label="Cancel" onClick={props.toggleSubmitPost}/>)
+  const SubmitButton = () => (<RaisedButton label="Submit" onClick={submit}/>)
+
   return (
-    props.pending ?
-      <div>Please wait...</div> :
-      props.error ?
-        <div>{props.error}</div> :
-        <div>
-          <div><input placeholder="Enter title" onChange={onTitleChange} onKeyPress={onKeyPress} /></div>
-          <div><input placeholder="Enter URL" onChange={onUrlChange} onKeyPress={onKeyPress} /></div>
-          <div><button onClick={() => submit(title, url)}>Submit</button></div>
-        </div>
+    <div>
+      { props.pending && <LinearProgress mode="indeterminate"/> }
+      { !props.pending && (
+          <div>
+            <TextField
+              fullWidth={true}
+              hintText="Post title"
+              onKeyPress={onKeyPress}
+              onChange={onTitleChange}/>
+            <TextField
+              fullWidth={true}
+              hintText="Post URL"
+              onKeyPress={onKeyPress}
+              onChange={onUrlChange}/>
+            { props.error && <Message>{props.error}</Message> }
+          </div>
+      ) }
+      <br/>
+      <CancelButton/>&nbsp;
+      { !props.pending && <SubmitButton/> }
+    </div>
   )
 }
 
