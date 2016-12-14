@@ -5,7 +5,8 @@
   "main": "app/index.html",
   "scripts": {
     "test": "./node_modules/.bin/mocha --opts test/mocha.opts test/app/**/*.js",
-    "build": "./node_modules/.bin/webpack -p"
+    "build": "NODE_ENV=production ROUTER_HISTORY=hash ./node_modules/.bin/webpack -p",
+    "dev": "NODE_ENV=developement ROUTER_HISTORY=hash ./node_modules/.bin/webpack"
   },
   "author": "Eyal Arubas <eyalarubas@gmail.com>",
   "private": true,
@@ -33,8 +34,8 @@
     "should": "^8.4.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^1.14.0",
+    "webpack-devserver": "0.0.6"
   },
   "dependencies": {
     "flexboxgrid": "^6.3.0",

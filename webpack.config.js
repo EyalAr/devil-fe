@@ -2,6 +2,26 @@ var webpack = require("webpack"),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     path = require("path");
 
+var plugins = [];
+
+plugins.push(new webpack.DefinePlugin({
+  __DEV__: process.env.NODE_ENV === "developement",
+  __HASH_HISTORY__: process.env.ROUTER_HISTORY === "hash",
+  "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development")
+}));
+
+plugins.push(new HtmlWebpackPlugin({
+  title: "Devil",
+  filename: "index.html",
+  template: "./src/index.tpl"
+}))
+
+if (process.env.NODE_ENV === "development") {
+  plugins.push(new webpack.SourceMapDevToolPlugin(
+    "[file].map", null, "../[resource-path]", "../[resource-path]"
+  ));
+}
+
 module.exports = {
   entry: "./src/index.js",
   module: {
@@ -29,14 +49,5 @@ module.exports = {
     path: "build",
     filename: "[name].[chunkhash].js"
   },
-  plugins: [
-    new webpack.SourceMapDevToolPlugin(
-      "[file].map", null, "../[resource-path]", "../[resource-path]"
-    ),
-    new HtmlWebpackPlugin({
-      title: "Devil",
-      filename: "index.html",
-      template: "./src/index.tpl"
-    })
-  ]
+  plugins: plugins
 };
