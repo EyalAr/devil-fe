@@ -22,6 +22,8 @@ export default {
         comments: List()
       }),
       user: Map({
+        pending: true,
+        error: null,
         posts: List()
       }),
       login: Map({

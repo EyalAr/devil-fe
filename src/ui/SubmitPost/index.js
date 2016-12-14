@@ -2,6 +2,7 @@ import React from "react"
 import LinearProgress from "material-ui/LinearProgress"
 import TextField from "material-ui/TextField"
 import RaisedButton from "material-ui/RaisedButton"
+import style from "./style.css"
 
 const ENTER_KEY = 13
 const Message = props => (<div className={style.message}>{props.children}</div>)

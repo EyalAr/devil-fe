@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import UserUI from "../../ui/User"
 import apiGetUserRequest from "../../actions/apiGetUserRequest"
+import gotoPost from "../../actions/gotoPost"
 
 class UserContainer extends Component {
   constructor (props) {
@@ -26,13 +27,13 @@ const mapStateToProps = (state, props) => {
   const user = data.getIn(["views", "user"])
   const entities = data.get("entities")
 
-  const loading = user.get("loading")
-  if (loading) return { loading }
+  const pending = user.get("pending")
+  if (pending) return { pending }
 
-  const loadingError = user.get("loadingError")
-  if (loadingError) return { loadingError }
+  const error = user.get("error")
+  if (error) return { error }
 
-  const name = user.get("name")
+  const name = entities.getIn(["users", user.get("id"), "name"])
   const updatedAt = user.get("updatedAt")
   const posts = user.get("posts").map(id => {
     return entities.getIn(["posts", id])
@@ -42,7 +43,8 @@ const mapStateToProps = (state, props) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    loadUser: (id, page, sort) => dispatch(apiGetUserRequest(id, page, sort))
+    loadUser: (id, page, sort) => dispatch(apiGetUserRequest(id, page, sort)),
+    gotoPost: id => dispatch(gotoPost(id))
   }
 }
 

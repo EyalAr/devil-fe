@@ -12,7 +12,9 @@ const PostEntry = props => {
         <a href={props.url}>{props.title}</a>
       </div>
       <div className={style.subtitle}>
-        <Link to={`/user/${props.user.id}`}>By {props.user.name}</Link> | {props.numComments} comment{props.numComments !== 1 ? "s" : ""}
+        { props.user && <Link to={`/user/${props.user.id}`}>By {props.user.name}</Link> }
+        { props.user && <span> | </span> }
+        <span>{props.numComments} comment{props.numComments !== 1 ? "s" : ""}</span>
       </div>
     </ListItem>
   )
