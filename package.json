@@ -6,7 +6,7 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha --opts test/mocha.opts test/app/**/*.js",
     "build": "NODE_ENV=production ROUTER_HISTORY=hash ./node_modules/.bin/webpack -p",
-    "dev": "NODE_ENV=developement ROUTER_HISTORY=hash ./node_modules/.bin/webpack"
+    "dev": "NODE_ENV=development ROUTER_HISTORY=hash ./node_modules/.bin/webpack"
   },
   "author": "Eyal Arubas <eyalarubas@gmail.com>",
   "private": true,

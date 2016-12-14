@@ -25,6 +25,7 @@ export default {
         posts: List()
       }),
       login: Map({
+        visible: false,
         loading: false,
         loginError: null
       }),
@@ -32,6 +33,12 @@ export default {
         visible: false,
         pending: false,
         submitError: null
+      }),
+      register: Map({
+        visible: false,
+        pending: false,
+        error: null,
+        received: false
       })
     }),
     entities: Map({

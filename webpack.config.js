@@ -5,7 +5,7 @@ var webpack = require("webpack"),
 var plugins = [];
 
 plugins.push(new webpack.DefinePlugin({
-  __DEV__: process.env.NODE_ENV === "developement",
+  __DEV__: process.env.NODE_ENV === "development",
   __HASH_HISTORY__: process.env.ROUTER_HISTORY === "hash",
   "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development")
 }));

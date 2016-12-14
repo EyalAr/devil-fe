@@ -1,28 +1,25 @@
 import React from "react"
-import { Link } from "react-router"
-import SubmitPost from "../SubmitPost"
+import Login from "../../containers/Login"
+import Register from "../../containers/Register"
+import SubmitPost from "../../containers/SubmitPost"
+import TopBar from "../TopBar"
+import ModalWrapper from "../ModalWrapper"
 
 const App = props => (
   <div>
-    <div>
-      DevIL: hello {props.user ? props.user.name : "guest"},
-      <Link to="/posts/1/top">All Posts</Link>,
-      {props.loggedIn ? <a onClick={props.toggleSubmitPost}>Submit Post,</a> : null}
-      {
-        props.loggedIn ?
-          <a onClick={props.logout}>Logout</a> :
-          <Link to="/login">Login</Link>
-      }
-    </div>
+    <TopBar
+      loggedIn={props.loggedIn}
+      user={props.user}
+      toggleSubmitPost={props.toggleSubmitPost}
+      toggleLogin={props.toggleLogin}
+      toggleRegister={props.toggleRegister}
+      logout={props.logout}/>
     {props.children}
-    {
-      props.loggedIn && props.submitPostView.visible ?
-        <SubmitPost
-          pending={props.submitPostView.pending}
-          error={props.submitPostView.submitError}
-          submit={props.submitPost}/> :
-        null
-    }
+    <ModalWrapper>
+      { props.loggedIn && props.submitPostVisible && <SubmitPost/> }
+      { !props.loggedIn && props.loginVisible && <Login/> }
+      { !props.loggedIn && props.registerVisible && <Register/> }
+    </ModalWrapper>
   </div>
 )
 

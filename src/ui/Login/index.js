@@ -28,7 +28,7 @@ const Login = props => {
           <input placeholder="Enter your email" onKeyPress={onEmailKeyPress} onChange={onEmailChange}/>
           <button onClick={() => props.getToken(email)}>Get token by email</button>
           <div>Or:</div>
-          <div><Link to="/register">Register</Link></div>
+          <div><a onClick={props.toggleRegister}>Register</a></div>
         </div>
   )
 }

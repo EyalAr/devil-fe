@@ -14,6 +14,6 @@ export default (
     <Redirect from="/post/:id" to="/post/:id/1/tree/top"/>
     <Route path="/user/:id/:page/:sort" component={User}/>
     <Redirect from="/user/:id" to="/user/:id/1/top"/>
-    <Route path="/login(/:token)" component={Login}/>
+    <Route path="/login/:token" component={Login}/>
   </Route>
 )

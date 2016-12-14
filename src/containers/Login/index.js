@@ -4,6 +4,7 @@ import { List } from "immutable"
 import LoginUI from "../../ui/Login"
 import apiLoginRequest from "../../actions/apiLoginRequest"
 import apiGetTokenRequest from "../../actions/apiGetTokenRequest"
+import toggleRegister from "../../actions/toggleRegister"
 
 class LoginContainer extends Component {
   constructor (props) {
@@ -12,7 +13,7 @@ class LoginContainer extends Component {
 
   componentDidMount () {
     const { params, login, loggedIn } = this.props
-    const { token } = params
+    const { token } = params || {}
     if (token) login(token)
   }
 
@@ -34,7 +35,8 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
   return {
     login: token => dispatch(apiLoginRequest(token)),
-    getToken: email => dispatch(apiGetTokenRequest(email))
+    getToken: email => dispatch(apiGetTokenRequest(email)),
+    toggleRegister: () => dispatch(toggleRegister())
   }
 }
 
