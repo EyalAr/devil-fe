@@ -26,8 +26,9 @@ export default {
       }),
       login: Map({
         visible: false,
-        loading: false,
-        loginError: null
+        pending: false,
+        error: null,
+        received: false
       }),
       submitPost: Map({
         visible: false,
