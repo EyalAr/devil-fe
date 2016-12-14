@@ -1,26 +1,26 @@
 import React from "react"
-import { Link } from "react-router"
+import LinearProgress from "material-ui/LinearProgress"
+import { List } from "material-ui/List"
+import PostEntry from "../PostEntry"
 
 const Posts = props => (
   <div>
-    <h1>Posts</h1>
-    {
-      props.loading ?
-        <div>"Loading..."</div> :
-        props.loadingError ?
-          <div>{props.loadingError}</div> :
-          <ol>
-            {
-              props.posts.map(p => (
-                <li key={p.id}>
-                  <a href={p.url}>{p.title}</a>
-                  <Link to={`/post/${p.id}`}>[comments]</Link>
-                  (<Link to={`/user/${p.user.id}`}>{p.user.name}</Link>)
-                </li>
-              ))
-            }
-          </ol>
-    }
+    { props.pending && <LinearProgress mode="indeterminate"/> }
+    { !props.pending && props.error && <Message>{props.error}</Message> }
+    { !props.pending && !props.error && (
+      <List>
+        {props.posts.map(p => (
+          <PostEntry
+            key={p.id}
+            id={p.id}
+            url={p.url}
+            title={p.title}
+            user={p.user}
+            numComments={p.numComments}
+            gotoPost={props.gotoPost}/>
+        ))}
+      </List>
+    ) }
   </div>
 )
 

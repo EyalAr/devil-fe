@@ -10,8 +10,8 @@ export default {
     user: Map(storedUser || {}),
     views: Map({
       postsList: Map({
-        loading: true,
-        loadingError: null,
+        pending: true,
+        error: null,
         page: 0,
         posts: List(),
         updatedAt: 0

@@ -1,11 +1,19 @@
 import { Schema, arrayOf } from "normalizr"
 
+const combine = (...funcs) => {
+  return (o, key, val) => funcs.forEach(f => f(o, key, val))
+}
+
 const assignId = (o, key, val) => {
   if (key === "_id") { o.id = val }
 }
 
+const assignNumComments = (o, key, val) => {
+  if (key === "num_comments") { o.numComments = val }
+}
+
 export const HOST = "http://yafo.herokuapp.com/"
-export const POST_SCHEMA = new Schema("posts", { idAttribute: "_id", assignEntity: assignId })
+export const POST_SCHEMA = new Schema("posts", { idAttribute: "_id", assignEntity: combine(assignId, assignNumComments) })
 export const USER_SCHEMA = new Schema("users", { idAttribute: "_id", assignEntity: assignId })
 export const COMMENT_SCHEMA = new Schema("comments", { idAttribute: "_id", assignEntity: assignId })
 export const POSTS_LIST_SCHEMA = new Schema("postsLists", { idAttribute: () => "main_list" })

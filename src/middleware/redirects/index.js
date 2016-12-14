@@ -2,7 +2,8 @@ import { hashHistory } from "react-router"
 
 const redirectActions = {
   "API.LOGIN.RESPONSE": action => action.data ? "/" : false,
-  "API.SUBMIT_POST.RESPONSE": action => action.data ? `/post/${action.data.result}` : false
+  "API.SUBMIT_POST.RESPONSE": action => action.data ? `/post/${action.data.result}` : false,
+  "GOTO_POST": action => `/post/${action.id}`
 }
 
 export default store => next => action => {
