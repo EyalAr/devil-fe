@@ -12,7 +12,7 @@ const assignNumComments = (o, key, val) => {
   if (key === "num_comments") { o.numComments = val }
 }
 
-export const HOST = "http://yafo.herokuapp.com/"
+export const HOST = "https://yafo.herokuapp.com/"
 export const POST_SCHEMA = new Schema("posts", { idAttribute: "_id", assignEntity: combine(assignId, assignNumComments) })
 export const USER_SCHEMA = new Schema("users", { idAttribute: "_id", assignEntity: assignId })
 export const COMMENT_SCHEMA = new Schema("comments", { idAttribute: "_id", assignEntity: assignId })
