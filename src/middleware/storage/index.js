@@ -4,7 +4,7 @@ const storageActions = {
   "API.LOGIN.RESPONSE": action => {
     if (action.data) {
       storage.setItem("token", action.data.token)
-      storage.setItem("user", JSON.stringify(action.data.user))
+      storage.setItem("user", JSON.stringify(action.data.entities.users[action.data.result]))
     }
   },
   "LOGOUT": () => storage.clear()

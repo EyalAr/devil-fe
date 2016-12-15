@@ -7,9 +7,11 @@ import apiSubmitPostRequest from "../../actions/apiSubmitPostRequest"
 import AppUI from "../../ui/App"
 
 const mapStateToProps = state => {
+  const userId = state.data.get("user")
+  const user = state.data.getIn(["entities", "users", userId])
   return {
     loggedIn: !!state.data.get("token"),
-    user: state.data.get("user").toJS(),
+    user: user ? user.toJS() : {},
     submitPostVisible: state.data.getIn(["views", "submitPost", "visible"]),
     loginVisible: state.data.getIn(["views", "login", "visible"]),
     registerVisible: state.data.getIn(["views", "register", "visible"])

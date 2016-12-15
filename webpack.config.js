@@ -41,7 +41,6 @@ module.exports = {
       loader: "url-loader?limit=1000000"
     }, {
       test: /\.json$/,
-      exclude: /node_modules/,
       loader: "json-loader"
     }]
   },

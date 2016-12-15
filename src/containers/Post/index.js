@@ -4,6 +4,10 @@ import { List } from "immutable"
 import PostUI from "../../ui/Post"
 import apiGetPostRequest from "../../actions/apiGetPostRequest"
 import toggleExpandedComment from "../../actions/toggleExpandedComment"
+import toggleSubmitCommentPreview from "../../actions/toggleSubmitCommentPreview"
+import toggleSubmitCommentVisible from "../../actions/toggleSubmitCommentVisible"
+import submitCommentTextChange from "../../actions/submitCommentTextChange"
+import apiSubmitCommentRequest from "../../actions/apiSubmitCommentRequest"
 
 class PostContainer extends Component {
   constructor (props) {
@@ -25,9 +29,11 @@ class PostContainer extends Component {
 
 const mapStateToProps = (state, props) => {
   const data = state.data
-  const post = data.getIn(["views", "post"])
+  const postView = data.getIn(["views", "post"])
+  const postId = props.params.id
   const entities = data.get("entities")
   const users = entities.get("users")
+  const post = entities.getIn(["posts", postId])
 
   const mapCommentIds = commentIds => {
     return commentIds.map(id => {
@@ -40,25 +46,33 @@ const mapStateToProps = (state, props) => {
     })
   }
 
-  const pending = post.get("pending")
+  const pending = postView.get("pending")
   if (pending) return { pending }
 
-  const error = post.get("error")
+  const error = postView.get("error")
   if (error) return { error }
 
   const title = post.get("title")
   const url = post.get("url")
-  const updatedAt = post.get("updatedAt")
+  const updatedAt = postView.get("updatedAt")
   const userId = post.get("user")
   const user = users.get(userId).toJS()
+  const submitCommentView = data.getIn(["views", "submitComment", postId]).toJS()
   const comments = mapCommentIds(post.get("comments")).toJS()
-  return { title, url, user, updatedAt, comments }
+  return { title, url, user, updatedAt, comments, submitCommentView }
 }
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch, props) => {
+  const postId = props.params.id
   return {
     loadPost: (id, page, mode, sort) => dispatch(apiGetPostRequest(id, page, mode, sort)),
-    toggleExpandedComment: id => dispatch(toggleExpandedComment(id))
+    toggleExpandedComment: id => dispatch(toggleExpandedComment(id)),
+    submitCommentCbs: {
+      onPreviewToggle: () => dispatch(toggleSubmitCommentPreview(postId)),
+      onVisibleToggle: () => dispatch(toggleSubmitCommentVisible(postId)),
+      onChange: text => dispatch(submitCommentTextChange(postId, text)),
+      onSubmit: text => dispatch(apiSubmitCommentRequest(postId, text))
+    }
   }
 }
 

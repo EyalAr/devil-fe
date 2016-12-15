@@ -17,6 +17,11 @@ import * as toggleSubmitPost from "./toggleSubmitPost"
 import * as submitPostResponse from "./submitPostResponse"
 import * as toggleLogin from "./toggleLogin"
 import * as toggleRegister from "./toggleRegister"
+import * as submitCommentRequest from "./submitCommentRequest"
+import * as submitCommentResponse from "./submitCommentResponse"
+import * as toggleSubmitCommentVisible from "./toggleSubmitCommentVisible"
+import * as toggleSubmitCommentPreview from "./toggleSubmitCommentPreview"
+import * as submitCommentTextChange from "./submitCommentTextChange"
 
 const REDUCERS = [
   getPostsRequest,
@@ -36,7 +41,12 @@ const REDUCERS = [
   toggleLogin,
   toggleRegister,
   registerRequest,
-  registerResponse
+  registerResponse,
+  submitCommentRequest,
+  submitCommentResponse,
+  toggleSubmitCommentVisible,
+  toggleSubmitCommentPreview,
+  submitCommentTextChange
 ]
 
 export default (state, action) => {

@@ -5,5 +5,9 @@ import login from "./login"
 import submitPost from "./submitPost"
 import getToken from "./getToken"
 import register from "./register"
+import submitComment from "./submitComment"
 
-export { getPosts, getPost, getUser, login, submitPost, getToken, register }
+export {
+  getPosts, getPost, getUser, login, submitPost, getToken, register,
+  submitComment
+}

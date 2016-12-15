@@ -9,8 +9,19 @@ export default ({ id, page, sort }, token) => {
       response.json().then(json => Promise.reject(Error(json.msg)))
     )
     .then(json => {
-      const result = normalize(json, POSTS_LIST_SCHEMA)
-      result.time = Date.now()
-      return result
+      const norm = normalize(json, POSTS_LIST_SCHEMA)
+      return {
+        result: id,
+        time: Date.now(),
+        entities: {
+          posts: norm.entities.posts,
+          users: {
+            [id]: {
+              ...norm.entities.users[id],
+              posts: norm.entities.postsLists[norm.result].posts
+            }
+          }
+        }
+      }
     })
 }

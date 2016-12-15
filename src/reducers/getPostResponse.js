@@ -1,3 +1,6 @@
+import { Map } from "immutable"
+import getInitialSubmitCommentData from "./helpers/getInitialSubmitCommentData"
+
 export const ACTION_NAME = "API.GET_POST.RESPONSE"
 
 export const run = (data, action) => action.error ?
@@ -9,5 +12,8 @@ export const run = (data, action) => action.error ?
     pending: false,
     error: null,
     updatedAt: action.data.time,
-    ...action.data.entities.posts[action.data.result]
-  }).mergeDeepIn(["entities"], action.data.entities)
+    id: action.data.result
+  }).updateIn(
+    ["views", "submitComment", action.data.result],
+    view => view || Map(getInitialSubmitCommentData())
+  ).mergeDeepIn(["entities"], action.data.entities)

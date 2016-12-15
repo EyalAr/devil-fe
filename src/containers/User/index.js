@@ -24,17 +24,19 @@ class UserContainer extends Component {
 
 const mapStateToProps = (state, props) => {
   const data = state.data
-  const user = data.getIn(["views", "user"])
+  const userView = data.getIn(["views", "user"])
+  const userId = props.params.id
   const entities = data.get("entities")
+  const user = entities.getIn(["users", userId])
 
-  const pending = user.get("pending")
+  const pending = userView.get("pending")
   if (pending) return { pending }
 
-  const error = user.get("error")
+  const error = userView.get("error")
   if (error) return { error }
 
-  const name = entities.getIn(["users", user.get("id"), "name"])
-  const updatedAt = user.get("updatedAt")
+  const name = user.get("name")
+  const updatedAt = userView.get("updatedAt")
   const posts = user.get("posts").map(id => {
     return entities.getIn(["posts", id])
   }).toJS()

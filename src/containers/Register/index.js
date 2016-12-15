@@ -6,9 +6,10 @@ import toggleRegister from "../../actions/toggleRegister"
 
 const mapStateToProps = (state, props) => {
   const data = state.data
-  const error = data.getIn(["views", "register", "error"])
-  const pending = data.getIn(["views", "register", "pending"])
-  const received = data.getIn(["views", "register", "received"])
+  const registerView = data.getIn(["views", "register"])
+  const error = registerView.get("error")
+  const pending = registerView.get("pending")
+  const received = registerView.get("received")
   return { error, pending, received }
 }
 

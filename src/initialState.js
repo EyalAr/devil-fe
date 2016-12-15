@@ -7,24 +7,24 @@ const storedToken = storage.getItem("token")
 export default {
   data: Map({
     token: storedToken || null,
-    user: Map(storedUser || {}),
+    user: storedUser ? storedUser.id : null,
     views: Map({
       postsList: Map({
         pending: true,
         error: null,
         page: 0,
-        posts: List(),
+        id: null,
         updatedAt: 0
       }),
       post: Map({
         pending: true,
         error: null,
-        comments: List()
+        id: null
       }),
       user: Map({
         pending: true,
         error: null,
-        posts: List()
+        id: null
       }),
       login: Map({
         visible: false,
@@ -35,20 +35,21 @@ export default {
       submitPost: Map({
         visible: false,
         pending: false,
-        submitError: null
+        error: null
       }),
       register: Map({
         visible: false,
         pending: false,
         error: null,
         received: false
-      })
+      }),
+      submitComment: Map({})
     }),
     entities: Map({
-      postLists: Map({}),
+      postsLists: Map({}),
       posts: Map({}),
       users: Map(storedUser ? {
-        [storedUser.id]: storedUser
+        [storedUser.id]: Map(storedUser)
       } : {}),
       comments: Map({})
     })

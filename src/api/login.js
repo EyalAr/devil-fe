@@ -11,9 +11,14 @@ export default ({ token }) => {
       return {
         token: json.token,
         time: Date.now(),
-        user: {
-          id: json.user._id,
-          ...json.user
+        result: json.user._id,
+        entities: {
+          users: {
+            [json.user._id]: {
+              id: json.user._id,
+              ...json.user
+            }
+          }
         }
       }
     })

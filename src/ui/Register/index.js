@@ -2,10 +2,9 @@ import React from "react"
 import LinearProgress from "material-ui/LinearProgress"
 import TextField from "material-ui/TextField"
 import RaisedButton from "material-ui/RaisedButton"
-import style from "./style.css"
+import Message from "../Message"
 
 const ENTER_KEY = 13
-const Message = props => (<div className={style.message}>{props.children}</div>)
 
 const Register = props => {
   var email = ""

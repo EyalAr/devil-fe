@@ -9,7 +9,7 @@ export const run = (data, action) => action.error ?
     pending: false,
     error: null,
     updatedAt: action.data.time,
-    posts: action.data.entities.postsLists[action.data.result].posts
+    id: action.data.result
   })
     .mergeDeepIn(["entities", "posts"], action.data.entities.posts)
     .mergeDeepIn(["entities", "users"], action.data.entities.users)

@@ -3,6 +3,7 @@ import { Link } from "react-router"
 import { Card, CardActions, CardHeader, CardText } from "material-ui/Card"
 import FontIcon from "material-ui/FontIcon"
 import FlatButton from "material-ui/FlatButton"
+import Markdown from "react-markdown"
 import style from "./style.css"
 
 const Comment = props => (
@@ -23,7 +24,7 @@ const Comment = props => (
           onClick={() => props.toggleExpanded(props.id)}>arrow_drop_up</FontIcon>
       }/>
     <CardText>
-      <div className={style.content}>{props.text}</div>
+      <Markdown className={style.content} source={props.text} escapeHtml={true}/>
       {props.expanded && props.children && props.children.map(c => (
         <Comment
           key={c.id}

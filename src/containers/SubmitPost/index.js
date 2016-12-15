@@ -6,8 +6,9 @@ import toggleSubmitPost from "../../actions/toggleSubmitPost"
 
 const mapStateToProps = (state, props) => {
   const data = state.data
-  const error = data.getIn(["views", "submitPost", "submitError"])
-  const pending = data.getIn(["views", "submitPost", "pending"])
+  const submitPostView = data.getIn(["views", "submitPost"])
+  const error = submitPostView.get("error")
+  const pending = submitPostView.get("pending")
   return { error, pending }
 }
 

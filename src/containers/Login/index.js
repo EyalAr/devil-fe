@@ -28,9 +28,10 @@ class LoginContainer extends Component {
 const mapStateToProps = (state, props) => {
   const data = state.data
   const loggedIn = !!data.get("token")
-  const error = data.getIn(["views", "login", "error"])
-  const pending = data.getIn(["views", "login", "pending"])
-  const received = data.getIn(["views", "login", "received"])
+  const loginView = data.getIn(["views", "login"])
+  const error = loginView.get("error")
+  const pending = loginView.get("pending")
+  const received = loginView.get("received")
   return { loggedIn, error, pending, received }
 }
 

@@ -3,9 +3,9 @@ import { Link } from "react-router"
 import LinearProgress from "material-ui/LinearProgress"
 import FlatButton from "material-ui/FlatButton"
 import Comment from "../Comment"
+import SubmitText from "../SubmitText"
+import Message from "../Message"
 import style from "./style.css"
-
-const Message = props => (<div className={style.message}>{props.children}</div>)
 
 const Post = props => (
   <div>
@@ -19,7 +19,14 @@ const Post = props => (
         <div className={style.subtitle}>
           By <Link to={`/user/${props.user.id}`}>{props.user.name}</Link>
         </div>
-        <FlatButton label="Comment"/>
+        <FlatButton label="Comment" onClick={() => props.submitCommentCbs.onVisibleToggle(props.params.id)}/>
+        <br/>
+        { props.submitCommentView.visible &&
+          <SubmitText
+            {...props.submitCommentView}
+            {...props.submitCommentCbs}
+            size={10} maxSize={20}
+            id={`submit-comment-${props.params.id}`}/> }
         {props.comments.map(c => (
           <Comment
             key={c.id}

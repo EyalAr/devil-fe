@@ -17,8 +17,8 @@ export default ({ dispatch, getState }) => next => action => {
   if (actionName && (apiAction = API_ACTIONS[camelize(actionName.toLowerCase())])) {
     const token = getState().data.get("token")
     return apiAction(action.params, token).then(
-      data => dispatch(apiSuccessResponse(actionName, data)),
-      error => dispatch(apiFailureResponse(actionName, error.toString()))
+      data => dispatch(apiSuccessResponse(actionName, data, action)),
+      error => dispatch(apiFailureResponse(actionName, error.toString(), action))
     )
   }
 }

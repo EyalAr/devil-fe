@@ -23,17 +23,19 @@ class PostsContainer extends Component {
 
 const mapStateToProps = (state, props) => {
   const data = state.data
-  const postsList = data.getIn(["views", "postsList"])
+  const postsListView = data.getIn(["views", "postsList"])
+  const postsListId = postsListView.get("id")
   const entities = data.get("entities")
   const users = entities.get("users")
+  const postsList = entities.getIn(["postsLists", postsListId])
 
-  const pending = postsList.get("pending")
+  const pending = postsListView.get("pending")
   if (pending) return { pending }
 
-  const error = postsList.get("error")
+  const error = postsListView.get("error")
   if (error) return { error }
 
-  const updatedAt = postsList.get("updatedAt")
+  const updatedAt = postsListView.get("updatedAt")
   const posts = postsList.get("posts").map(id => {
     const post = entities.getIn(["posts", id])
     return post.set("user", users.get(post.get("user")))

@@ -14,6 +14,6 @@ export const run = (data, action) => action.error ?
       updatedAt: action.data.time,
       received: false
     })
-    .mergeIn(["entities", "users", action.data.user.id], action.data.user)
-    .mergeIn(["user"], action.data.user)
+    .mergeDeepIn(["entities"], action.data.entities)
+    .set("user", action.data.result)
     .set("token", action.data.token)

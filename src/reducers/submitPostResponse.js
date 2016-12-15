@@ -1,17 +1,22 @@
+import getInitialSubmitCommentData from "./helpers/getInitialSubmitCommentData"
+
 export const ACTION_NAME = "API.SUBMIT_POST.RESPONSE"
 
 export const run = (data, action) => action.error ?
   data.mergeIn(["views", "submitPost"], {
     pending: false,
-    submitError: action.error
+    error: action.error
   }) :
   data.mergeIn(["views", "submitPost"], {
     pending: false,
-    submitError: null,
+    error: null,
     visible: false
   }).mergeIn(["views", "post"], {
-    loading: false,
-    loadingError: null,
+    pending: false,
+    error: null,
     updatedAt: action.data.time,
     ...action.data.entities.posts[action.data.result]
-  }).mergeDeepIn(["entities"], action.data.entities)
+  }).mergeIn(
+    ["views", "submitComment", action.data.result],
+    getInitialSubmitCommentData()
+  ).mergeDeepIn(["entities"], action.data.entities)

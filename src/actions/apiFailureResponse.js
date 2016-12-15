@@ -1,4 +1,4 @@
-export default (actionName, error) => ({
+export default (actionName, error, requestAction) => ({
   type: ["API", actionName, "RESPONSE"].join("."),
-  error
+  error, requestAction
 })
