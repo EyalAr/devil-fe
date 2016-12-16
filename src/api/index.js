@@ -6,8 +6,9 @@ import submitPost from "./submitPost"
 import getToken from "./getToken"
 import register from "./register"
 import submitComment from "./submitComment"
+import submitCommentReply from "./submitCommentReply"
 
 export {
   getPosts, getPost, getUser, login, submitPost, getToken, register,
-  submitComment
+  submitComment, submitCommentReply
 }

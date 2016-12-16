@@ -4,6 +4,7 @@ import { Card, CardActions, CardHeader, CardText } from "material-ui/Card"
 import FontIcon from "material-ui/FontIcon"
 import FlatButton from "material-ui/FlatButton"
 import Markdown from "react-markdown"
+import SubmitText from "../SubmitText"
 import style from "./style.css"
 
 const Comment = props => (
@@ -33,12 +34,24 @@ const Comment = props => (
           user={c.user}
           children={c.children}
           expanded={c.view.expanded}
+          submitReplyView={c.view.submitReply}
+          submitReplyCbs={props.submitReplyCbs}
           toggleExpanded={props.toggleExpanded}/>
       ))}
     </CardText>
     <CardActions>
-      <FlatButton label="Reply"/>
+      <FlatButton label="Reply" onClick={() => props.submitReplyCbs.onVisibleToggle(props.id)}/>
     </CardActions>
+    { props.submitReplyView.visible &&
+      <CardText>
+        <SubmitText
+          {...props.submitReplyView}
+          onChange={text => props.submitReplyCbs.onChange(props.id, text)}
+          onPreviewToggle={() => props.submitReplyCbs.onPreviewToggle(props.id)}
+          onSubmit={text => props.submitReplyCbs.onSubmit(props.id, text)}
+          size={10} maxSize={20}
+          id={`submit-reply-${props.id}`}/>
+      </CardText> }
   </Card>
 )
 

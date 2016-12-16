@@ -4,6 +4,10 @@ import { List } from "immutable"
 import PostUI from "../../ui/Post"
 import apiGetPostRequest from "../../actions/apiGetPostRequest"
 import toggleExpandedComment from "../../actions/toggleExpandedComment"
+import toggleCommentReplyVisible from "../../actions/toggleCommentReplyVisible"
+import toggleCommentReplyPreview from "../../actions/toggleCommentReplyPreview"
+import replyCommentTextChange from "../../actions/replyCommentTextChange"
+import apiSubmitCommentReplyRequest from "../../actions/apiSubmitCommentReplyRequest"
 import toggleSubmitCommentPreview from "../../actions/toggleSubmitCommentPreview"
 import toggleSubmitCommentVisible from "../../actions/toggleSubmitCommentVisible"
 import submitCommentTextChange from "../../actions/submitCommentTextChange"
@@ -43,7 +47,7 @@ const mapStateToProps = (state, props) => {
       return comment
         .set("children", mapCommentIds(childrenIds))
         .set("user", users.get(userId))
-        .set("view", data.getIn(["comment", id]))
+        .set("view", data.getIn(["views", "comment", id]))
     })
   }
 
@@ -68,6 +72,12 @@ const mapDispatchToProps = (dispatch, props) => {
   return {
     loadPost: (id, page, mode, sort) => dispatch(apiGetPostRequest(id, page, mode, sort)),
     toggleExpandedComment: id => dispatch(toggleExpandedComment(id)),
+    commentReplyCbs: {
+      onPreviewToggle: commentId => dispatch(toggleCommentReplyPreview(commentId)),
+      onVisibleToggle: commentId => dispatch(toggleCommentReplyVisible(commentId)),
+      onChange: (commentId, text) => dispatch(replyCommentTextChange(commentId, text)),
+      onSubmit: (commentId, text) => dispatch(apiSubmitCommentReplyRequest(postId, commentId, text))
+    },
     submitCommentCbs: {
       onPreviewToggle: () => dispatch(toggleSubmitCommentPreview(postId)),
       onVisibleToggle: () => dispatch(toggleSubmitCommentVisible(postId)),

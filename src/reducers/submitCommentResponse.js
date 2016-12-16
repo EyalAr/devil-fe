@@ -1,5 +1,5 @@
 import { List } from "immutable"
-import getInitialCommentViewData from "./helpers/getInitialCommentViewData"
+import generateInitialCommentsViewData from "./helpers/generateInitialCommentsViewData"
 
 export const ACTION_NAME = "API.SUBMIT_COMMENT.RESPONSE"
 
@@ -20,13 +20,7 @@ export const run = (data, action) => action.error ?
       ["entities", "posts", action.requestAction.params.id, "comments"],
       comments => comments ? comments.push(action.data.result) : List([action.data.result])
     )
-    .mergeDeep(
-      "comment",
-      (action.data.entities.comments || []).reduce(
-        (res, comment) => {
-          res[comment.id] = getInitialCommentViewData()
-          return res
-        },
-        {}
-      )
+    .mergeDeepIn(
+      ["views", "comment"],
+      generateInitialCommentsViewData(action.data.entities.comments)
     )

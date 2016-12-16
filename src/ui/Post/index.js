@@ -35,6 +35,8 @@ const Post = props => (
             user={c.user}
             children={c.children}
             expanded={c.view.expanded}
+            submitReplyView={c.view.submitReply}
+            submitReplyCbs={props.commentReplyCbs}
             toggleExpanded={props.toggleExpandedComment}/>
         ))}
       </div>
