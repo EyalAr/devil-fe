@@ -43,6 +43,7 @@ const mapStateToProps = (state, props) => {
       return comment
         .set("children", mapCommentIds(childrenIds))
         .set("user", users.get(userId))
+        .set("view", data.getIn(["comment", id]))
     })
   }
 

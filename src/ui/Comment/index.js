@@ -32,7 +32,7 @@ const Comment = props => (
           text={c.text}
           user={c.user}
           children={c.children}
-          expanded={c.expanded}
+          expanded={c.view.expanded}
           toggleExpanded={props.toggleExpanded}/>
       ))}
     </CardText>

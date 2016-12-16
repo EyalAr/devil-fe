@@ -1,4 +1,5 @@
 import { List } from "immutable"
+import getInitialCommentViewData from "./helpers/getInitialCommentViewData"
 
 export const ACTION_NAME = "API.SUBMIT_COMMENT.RESPONSE"
 
@@ -18,4 +19,14 @@ export const run = (data, action) => action.error ?
     .updateIn(
       ["entities", "posts", action.requestAction.params.id, "comments"],
       comments => comments ? comments.push(action.data.result) : List([action.data.result])
+    )
+    .mergeDeep(
+      "comment",
+      (action.data.entities.comments || []).reduce(
+        (res, comment) => {
+          res[comment.id] = getInitialCommentViewData()
+          return res
+        },
+        {}
+      )
     )

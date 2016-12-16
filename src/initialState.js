@@ -43,7 +43,8 @@ export default {
         error: null,
         received: false
       }),
-      submitComment: Map({})
+      submitComment: Map({}),
+      comment: Map({})
     }),
     entities: Map({
       postsLists: Map({}),
