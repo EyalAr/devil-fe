@@ -4,6 +4,7 @@ import { List } from "immutable"
 import PostUI from "../../ui/Post"
 import apiGetPostRequest from "../../actions/apiGetPostRequest"
 import toggleExpandedComment from "../../actions/toggleExpandedComment"
+import togglePostPreview from "../../actions/togglePostPreview"
 import toggleCommentReplyVisible from "../../actions/toggleCommentReplyVisible"
 import toggleCommentReplyPreview from "../../actions/toggleCommentReplyPreview"
 import replyCommentTextChange from "../../actions/replyCommentTextChange"
@@ -12,6 +13,7 @@ import toggleSubmitCommentPreview from "../../actions/toggleSubmitCommentPreview
 import toggleSubmitCommentVisible from "../../actions/toggleSubmitCommentVisible"
 import submitCommentTextChange from "../../actions/submitCommentTextChange"
 import apiSubmitCommentRequest from "../../actions/apiSubmitCommentRequest"
+import toggleLogin from "../../actions/toggleLogin"
 
 class PostContainer extends Component {
   constructor (props) {
@@ -40,6 +42,7 @@ const mapStateToProps = (state, props) => {
   const post = entities.getIn(["posts", postId])
 
   const mapCommentIds = commentIds => {
+    if (!commentIds) return List([])
     return commentIds.map(id => {
       var comment = entities.getIn(["comments", id])
       const childrenIds = comment.get("children") || List()
@@ -59,12 +62,17 @@ const mapStateToProps = (state, props) => {
 
   const title = post.get("title")
   const url = post.get("url")
+  const preview = postView.get("preview")
   const updatedAt = postView.get("updatedAt")
   const userId = post.get("user")
   const user = users.get(userId).toJS()
   const submitCommentView = data.getIn(["views", "submitComment", postId]).toJS()
   const comments = mapCommentIds(post.get("comments")).toJS()
-  return { title, url, user, updatedAt, comments, submitCommentView }
+  const loggedIn = !!data.get("token")
+  return {
+    title, url, preview, user, loggedIn,
+    updatedAt, comments, submitCommentView
+  }
 }
 
 const mapDispatchToProps = (dispatch, props) => {
@@ -72,6 +80,8 @@ const mapDispatchToProps = (dispatch, props) => {
   return {
     loadPost: (id, page, mode, sort) => dispatch(apiGetPostRequest(id, page, mode, sort)),
     toggleExpandedComment: id => dispatch(toggleExpandedComment(id)),
+    togglePreview: id => dispatch(togglePostPreview(id)),
+    toggleLogin: () => dispatch(toggleLogin()),
     commentReplyCbs: {
       onPreviewToggle: commentId => dispatch(toggleCommentReplyPreview(commentId)),
       onVisibleToggle: commentId => dispatch(toggleCommentReplyVisible(commentId)),

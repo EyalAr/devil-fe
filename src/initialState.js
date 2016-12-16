@@ -19,7 +19,8 @@ export default {
       post: Map({
         pending: true,
         error: null,
-        id: null
+        id: null,
+        preview: false
       }),
       user: Map({
         pending: true,

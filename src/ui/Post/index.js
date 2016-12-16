@@ -5,6 +5,7 @@ import FlatButton from "material-ui/FlatButton"
 import Comment from "../Comment"
 import SubmitText from "../SubmitText"
 import Message from "../Message"
+import PostPreview from "../PostPreview"
 import style from "./style.css"
 
 const Post = props => (
@@ -20,10 +21,17 @@ const Post = props => (
           By <Link to={`/user/${props.user.id}`}>{props.user.name}</Link>
         </div>
         <div className={style.buttonsWrapper}>
-          <FlatButton label="Comment" onClick={() => props.submitCommentCbs.onVisibleToggle(props.params.id)}/>
-          <FlatButton label="Preview" onClick={() => {}}/>
+          <FlatButton label="Comment" onClick={() => {
+            if (props.loggedIn) {
+              props.submitCommentCbs.onVisibleToggle()
+            } else {
+              props.toggleLogin()
+            }
+          }}/>
+          <FlatButton label="Preview" onClick={() => props.togglePreview(props.params.id)}/>
           <FlatButton label="Share" onClick={() => {}}/>
         </div>
+        { props.preview && <PostPreview url={props.url} className={style.postPreview}/> }
         { props.submitCommentView.visible &&
           <SubmitText
             {...props.submitCommentView}
@@ -41,7 +49,16 @@ const Post = props => (
               children={c.children}
               expanded={c.view.expanded}
               submitReplyView={c.view.submitReply}
-              submitReplyCbs={props.commentReplyCbs}
+              submitReplyCbs={{
+                ...props.commentReplyCbs,
+                onVisibleToggle: commentId => {
+                  if (props.loggedIn) {
+                    props.commentReplyCbs.onVisibleToggle(commentId)
+                  } else {
+                    props.toggleLogin()
+                  }
+                }
+              }}
               toggleExpanded={props.toggleExpandedComment}/>
           ))}
           </div> }
