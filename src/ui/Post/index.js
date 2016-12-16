@@ -19,26 +19,32 @@ const Post = props => (
         <div className={style.subtitle}>
           By <Link to={`/user/${props.user.id}`}>{props.user.name}</Link>
         </div>
-        <FlatButton label="Comment" onClick={() => props.submitCommentCbs.onVisibleToggle(props.params.id)}/>
-        <br/>
+        <div className={style.buttonsWrapper}>
+          <FlatButton label="Comment" onClick={() => props.submitCommentCbs.onVisibleToggle(props.params.id)}/>
+          <FlatButton label="Preview" onClick={() => {}}/>
+          <FlatButton label="Share" onClick={() => {}}/>
+        </div>
         { props.submitCommentView.visible &&
           <SubmitText
             {...props.submitCommentView}
             {...props.submitCommentCbs}
             size={10} maxSize={20}
             id={`submit-comment-${props.params.id}`}/> }
-        {props.comments.map(c => (
-          <Comment
-            key={c.id}
-            id={c.id}
-            text={c.text}
-            user={c.user}
-            children={c.children}
-            expanded={c.view.expanded}
-            submitReplyView={c.view.submitReply}
-            submitReplyCbs={props.commentReplyCbs}
-            toggleExpanded={props.toggleExpandedComment}/>
-        ))}
+        { props.comments.length > 0 && <div className={style.commentsWrapper}>
+          { props.comments.map(c => (
+            <Comment
+              key={c.id}
+              id={c.id}
+              text={c.text}
+              createdAt={c.createdAt}
+              user={c.user}
+              children={c.children}
+              expanded={c.view.expanded}
+              submitReplyView={c.view.submitReply}
+              submitReplyCbs={props.commentReplyCbs}
+              toggleExpanded={props.toggleExpandedComment}/>
+          ))}
+          </div> }
       </div>
     ) }
   </div>

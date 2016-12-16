@@ -12,10 +12,14 @@ const assignNumComments = (o, key, val) => {
   if (key === "num_comments") { o.numComments = val }
 }
 
+const assignCreatedAt = (o, key, val) => {
+  if (key === "created_at") { o.createdAt = new Date(val) }
+}
+
 export const HOST = "https://yafo.herokuapp.com/"
-export const POST_SCHEMA = new Schema("posts", { idAttribute: "_id", assignEntity: combine(assignId, assignNumComments) })
+export const POST_SCHEMA = new Schema("posts", { idAttribute: "_id", assignEntity: combine(assignId, assignNumComments, assignCreatedAt) })
 export const USER_SCHEMA = new Schema("users", { idAttribute: "_id", assignEntity: assignId })
-export const COMMENT_SCHEMA = new Schema("comments", { idAttribute: "_id", assignEntity: assignId })
+export const COMMENT_SCHEMA = new Schema("comments", { idAttribute: "_id", assignEntity: combine(assignId, assignCreatedAt) })
 export const POSTS_LIST_SCHEMA = new Schema("postsLists", { idAttribute: () => "main_list" })
 
 POSTS_LIST_SCHEMA.define({

@@ -1,5 +1,6 @@
 import { resolve } from "url"
 import { HOST } from "./config"
+import makeCommentEntityFromJson from "./helpers/makeCommentEntityFromJson"
 
 export default ({ postId, commentId, text }, token) => {
   const form = new FormData()
@@ -21,11 +22,7 @@ export default ({ postId, commentId, text }, token) => {
         time: Date.now(),
         entities: {
           comments: {
-            [json._id]: {
-              ...json,
-              id: json._id,
-              user: json.user_id
-            }
+            [json._id]: makeCommentEntityFromJson(json)
           }
         }
       }

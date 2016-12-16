@@ -12,6 +12,13 @@
         height: 100%;
         margin: 0;
       }
+      a:hover {
+        text-decoration: underline;
+      }
+      a {
+        color: #6b6b6b;
+        text-decoration: none;
+      }
     </style>
   </head>
   <body>
