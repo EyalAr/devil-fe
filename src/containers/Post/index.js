@@ -46,7 +46,7 @@ const mapStateToProps = (state, props) => {
     })
   }
 
-  const pending = postView.get("pending")
+  const pending = postView.get("pending") || postId !== postView.get("id")
   if (pending) return { pending }
 
   const error = postView.get("error")
