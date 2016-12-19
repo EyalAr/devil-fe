@@ -1,9 +1,9 @@
 import React from "react"
-import TextField from "material-ui/TextField"
-import FlatButton from "material-ui/FlatButton"
-import Markdown from "../Markdown"
-import LinearProgress from "material-ui/LinearProgress"
-import Message from "../Message"
+import TextField from "../../lib/TextField"
+import TextButton from "../../lib/TextButton"
+import Markdown from "../../lib/Markdown"
+import LinearProgress from "../../lib/LinearProgress"
+import Message from "../../lib/Message"
 
 const DEFAULT_TEXTAREA_STYLE = {
   boxShadow: "0px 0px 5px 0px #c7c7c7"
@@ -31,8 +31,8 @@ const SubmitText = ({
       </div>
       { !pending && error && <Message>{error}</Message> }
       { !pending && <div>
-          <FlatButton label={preview ? "Edit" : "Preview"} onClick={onPreviewToggle}/>&nbsp;
-          <FlatButton label="Send" onClick={() => onSubmit(text)}/>
+          <TextButton onClick={onPreviewToggle}>{preview ? "Edit" : "Preview"}</TextButton>&nbsp;
+          <TextButton onClick={() => onSubmit(text)}>Send</TextButton>
         </div>
       }
     </div>

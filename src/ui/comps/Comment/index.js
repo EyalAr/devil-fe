@@ -3,8 +3,7 @@ import { Link } from "react-router"
 import TimeAgo from "react-timeago"
 import { Card, CardMainContent, CardExtraContent } from "../../lib/Card"
 import TextButton from "../../lib/TextButton"
-import TextButton from "../TextButton"
-import Markdown from "../Markdown"
+import Markdown from "../../lib/Markdown"
 import SubmitText from "../SubmitText"
 
 const Comment = props => (

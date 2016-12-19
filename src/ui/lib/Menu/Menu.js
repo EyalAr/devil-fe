@@ -26,7 +26,7 @@ class Menu extends Component {
         { this.state.open &&
           <div className={cx("itemsContainer")}>
             {items.map(item => (
-              <div className={cx("itemWrapper")}>
+              <div key={item.key} className={cx("itemWrapper")}>
                 {item}
               </div>
             ))}

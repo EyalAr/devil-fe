@@ -1,5 +1,6 @@
-import Menu from "./Menu"
-import MenuItem from "./MenuItem"
+import Card from "./Card"
+import CardMainContent from "./CardMainContent"
+import CardExtraContent from "./CardExtraContent"
 
-export default Menu
-export { Menu, MenuItem }
+export default Card
+export { Card, CardMainContent, CardExtraContent }

@@ -1,13 +1,13 @@
 import React from "react"
 import { Link } from "react-router"
-import { Menu, MenuItem } from "../Menu"
-import TextButton from "../TextButton"
+import { Menu, MenuItem } from "../../lib/Menu"
+import TextButton from "../../lib/TextButton"
 
 const TopBarMenu = props => {
-  const ProfileItem = <MenuItem><Link to={`/user/${props.user.id}`}>Profile</Link></MenuItem>
-  const LogoutItem = <MenuItem><TextButton onClick={props.logout}>Logout</TextButton></MenuItem>
-  const LoginItem = <MenuItem><TextButton onClick={props.toggleLogin}>Login</TextButton></MenuItem>
-  const RegisterItem = <MenuItem><TextButton onClick={props.toggleRegister}>Register</TextButton></MenuItem>
+  const ProfileItem = <MenuItem key="profile"><Link to={`/user/${props.user.id}`}>Profile</Link></MenuItem>
+  const LogoutItem = <MenuItem key="logout"><TextButton onClick={props.logout}>Logout</TextButton></MenuItem>
+  const LoginItem = <MenuItem key="login"><TextButton onClick={props.toggleLogin}>Login</TextButton></MenuItem>
+  const RegisterItem = <MenuItem key="register"><TextButton onClick={props.toggleRegister}>Register</TextButton></MenuItem>
   return (
     <Menu anchor={<span>Menu</span>}>
       { props.loggedIn && ProfileItem }

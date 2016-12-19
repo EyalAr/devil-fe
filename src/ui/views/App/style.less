@@ -1,4 +1,4 @@
-import "../breakpoints"
+@import "../../breakpoints";
 
 .base() {
   position: absolute;
@@ -8,12 +8,12 @@ import "../breakpoints"
 }
 
 .container {
-  .base
+  .base;
   height: 100%;
 }
 
 .topBar {
-  .base
+  .base;
   @media @desktop, @desktop-xl {
     position: fixed;
     height: 2rem;
@@ -27,7 +27,7 @@ import "../breakpoints"
 }
 
 .body {
-  .base
+  .base;
   @media @desktop, @desktop-xl {
     margin-top: 2rem;
   }
@@ -40,7 +40,7 @@ import "../breakpoints"
 }
 
 .dialog {
-  .body
+  .body;
   overflow: hidden;
   height: 0;
 }

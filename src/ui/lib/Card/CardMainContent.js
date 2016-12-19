@@ -4,10 +4,10 @@ import style from "./style.less"
 
 const cx = classnames.bind(style)
 
-const MenuItem = props => (
-  <div className={cx("item")}>{props.children}</div>
+const CardMainContent = ({ children }) => (
+  <div>{children}</div>
 )
 
-MenuItem.displayName = "UI/lib/Menu/Item"
+CardMainContent.displayName = "UI/lib/Card/MainContent"
 
-export default MenuItem
+export default CardMainContent

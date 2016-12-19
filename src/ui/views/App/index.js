@@ -5,7 +5,7 @@ import Register from "../../../containers/Register"
 import SubmitPost from "../../../containers/SubmitPost"
 import TopBar from "../../comps/TopBar"
 import DialogWrapper from "../../lib/DialogWrapper"
-import style from "./style.css"
+import style from "./style.less"
 
 const cx = classnames.bind(style)
 

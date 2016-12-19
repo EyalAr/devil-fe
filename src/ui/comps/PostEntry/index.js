@@ -1,13 +1,12 @@
 import React from "react"
 import { Link } from "react-router"
-import { ListItem } from "material-ui/List"
 import style from "./style.css"
 
 const ENTER_KEY = 13
 
 const PostEntry = props => {
   return (
-    <ListItem onClick={() => props.gotoPost(props.id)}>
+    <div onClick={() => props.gotoPost(props.id)}>
       <div className={style.title}>
         <a href={props.url}>{props.title}</a>
       </div>
@@ -16,7 +15,7 @@ const PostEntry = props => {
         { props.user && <span> | </span> }
         <span>{props.numComments} comment{props.numComments !== 1 ? "s" : ""}</span>
       </div>
-    </ListItem>
+    </div>
   )
 }
 
