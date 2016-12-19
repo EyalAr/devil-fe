@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { List } from "immutable"
-import LoginUI from "../../ui/Login"
+import LoginUI from "../../ui/views/Login"
 import apiLoginRequest from "../../actions/apiLoginRequest"
 import apiGetTokenRequest from "../../actions/apiGetTokenRequest"
 import toggleRegister from "../../actions/toggleRegister"

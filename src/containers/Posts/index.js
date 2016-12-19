@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import PostsUI from "../../ui/Posts"
+import PostsUI from "../../ui/views/Posts"
 import apiGetPostsRequest from "../../actions/apiGetPostsRequest"
 import gotoPost from "../../actions/gotoPost"
 

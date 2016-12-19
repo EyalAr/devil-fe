@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import SubmitPostUI from "../../ui/SubmitPost"
+import SubmitPostUI from "../../ui/views/SubmitPost"
 import apiSubmitPostRequest from "../../actions/apiSubmitPostRequest"
 import toggleSubmitPost from "../../actions/toggleSubmitPost"
 

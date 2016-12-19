@@ -1,6 +1,6 @@
 import React from "react"
 import { connect } from "react-redux"
-import RegisterUI from "../../ui/Register"
+import RegisterUI from "../../ui/views/Register"
 import apiRegisterRequest from "../../actions/apiRegisterRequest"
 import toggleRegister from "../../actions/toggleRegister"
 

@@ -4,7 +4,7 @@ import toggleSubmitPost from "../../actions/toggleSubmitPost"
 import toggleLogin from "../../actions/toggleLogin"
 import toggleRegister from "../../actions/toggleRegister"
 import apiSubmitPostRequest from "../../actions/apiSubmitPostRequest"
-import AppUI from "../../ui/App"
+import AppUI from "../../ui/views/App"
 
 const mapStateToProps = state => {
   const userId = state.data.get("user")

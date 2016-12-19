@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { List } from "immutable"
-import PostUI from "../../ui/Post"
+import PostUI from "../../ui/views/Post"
 import apiGetPostRequest from "../../actions/apiGetPostRequest"
 import toggleExpandedComment from "../../actions/toggleExpandedComment"
 import togglePostPreview from "../../actions/togglePostPreview"

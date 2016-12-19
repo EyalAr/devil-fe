@@ -1,0 +1,49 @@
+import React from "react"
+import LinearProgress from "../../lib/LinearProgress"
+import TextField from "../../lib/TextField"
+import TextButton from "../../lib/TextButton"
+import Message from "../../lib/Message"
+
+const ENTER_KEY = 13
+
+const Register = props => {
+  var email = ""
+  var name = ""
+
+  const submit = () => email && name && props.register(email, name)
+  const onKeyPress = e => e.keyCode === ENTER_KEY && submit()
+  const onEmailChange = e => email = e.target.value
+  const onNameChange = e => name = e.target.value
+
+  const CancelButton = () => (<TextButton onClick={props.toggleRegister}>Cancel</TextButton>)
+  const SubmitButton = () => (<TextButton onClick={submit}>Submit</TextButton>)
+
+  return (
+    <div>
+      { props.pending && <LinearProgress mode="indeterminate"/> }
+      { !props.pending && (
+          <div>
+            <TextField
+              fullWidth={true}
+              hintText="Enter your e-mail address"
+              onKeyPress={onKeyPress}
+              onChange={onEmailChange}/>
+            <TextField
+              fullWidth={true}
+              hintText="Enter your full name"
+              onKeyPress={onKeyPress}
+              onChange={onNameChange}/>
+            { props.error && <Message>{props.error}</Message> }
+            { props.received && <Message>Your request has been received. Please wait for an email from us.</Message> }
+          </div>
+      ) }
+      <br/>
+      <CancelButton/>&nbsp;
+      { !props.pending && !props.loggedIn && <SubmitButton/> }
+    </div>
+  )
+}
+
+Register.displayName = "UI/views/Register"
+
+export default Register

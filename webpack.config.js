@@ -2,10 +2,13 @@ var webpack = require("webpack"),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     path = require("path");
 
+var DEV = process.env.NODE_ENV === "development"
+
+var cssLoaderOptions = "?modules";
 var plugins = [];
 
 plugins.push(new webpack.DefinePlugin({
-  __DEV__: process.env.NODE_ENV === "development",
+  __DEV__: DEV,
   __HASH_HISTORY__: process.env.ROUTER_HISTORY === "hash",
   "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development")
 }));
@@ -16,10 +19,11 @@ plugins.push(new HtmlWebpackPlugin({
   template: "./src/index.tpl"
 }))
 
-if (process.env.NODE_ENV === "development") {
+if (DEV) {
   plugins.push(new webpack.SourceMapDevToolPlugin(
     "[file].map", null, "../[resource-path]", "../[resource-path]"
   ));
+  cssLoaderOptions += "?localIdentName=[local]---[hash:base64:5]"
 }
 
 module.exports = {
@@ -31,7 +35,7 @@ module.exports = {
       loader: "babel-loader"
     }, {
       test: /\.css$/,
-      loader: "style-loader!css-loader?modules",
+      loader: "style-loader!css-loader" + cssLoaderOptions,
       exclude: [/flexboxgrid/, /material-design-icons/]
     }, {
       test: [/flexboxgrid\.css$/, /material-design-icons.*\.css$/],
@@ -42,6 +46,9 @@ module.exports = {
     }, {
       test: /\.json$/,
       loader: "json-loader"
+    }, {
+      test: /\.less$/,
+      loader: "style-loader!css-loader" + cssLoaderOptions + "!less-loader"
     }]
   },
   output: {

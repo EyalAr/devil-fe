@@ -1,0 +1,67 @@
+import "../breakpoints"
+
+.base() {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.container {
+  .base
+  height: 100%;
+}
+
+.topBar {
+  .base
+  @media @desktop, @desktop-xl {
+    position: fixed;
+    height: 2rem;
+  }
+  @media @highdensity @tablet {
+    height: 3rem;
+  }
+  @media @highdensity @mobile {
+    height: 3rem;
+  }
+}
+
+.body {
+  .base
+  @media @desktop, @desktop-xl {
+    margin-top: 2rem;
+  }
+  @media @highdensity @tablet {
+    top: 3rem;
+  }
+  @media @highdensity @mobile {
+    top: 3rem;
+  }
+}
+
+.dialog {
+  .body
+  overflow: hidden;
+  height: 0;
+}
+
+.dialogVisible {
+  &.dialog {
+    height: 5em
+  }
+  @media @desktop, @desktop-xl {
+    &.body {
+      margin-top: 7em;
+    }
+  }
+  @media @highdensity @tablet {
+    &.body {
+      top: 8rem;
+    }
+  }
+  @media @highdensity @mobile {
+    &.body {
+      top: 8rem;
+    }
+  }
+}

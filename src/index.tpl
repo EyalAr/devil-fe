@@ -12,6 +12,12 @@
         height: 100%;
         margin: 0;
       }
+      html {
+        font-size: 62.5%;
+      }
+      body {
+        font-size: 1.4rem;
+      }
       a:hover {
         text-decoration: underline;
       }
