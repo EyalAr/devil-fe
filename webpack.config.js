@@ -23,7 +23,7 @@ if (DEV) {
   plugins.push(new webpack.SourceMapDevToolPlugin(
     "[file].map", null, "../[resource-path]", "../[resource-path]"
   ));
-  cssLoaderOptions += "?localIdentName=[local]---[hash:base64:5]"
+  cssLoaderOptions += "&localIdentName=[local]_[hash:base64:5]"
 }
 
 module.exports = {
