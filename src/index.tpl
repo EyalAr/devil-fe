@@ -2,30 +2,10 @@
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style type="text/css">
-      html, body, #app-root {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        margin: 0;
-      }
-      html {
-        font-size: 62.5%;
-      }
-      body {
-        font-size: 1.4rem;
-      }
-      a:hover {
-        text-decoration: underline;
-      }
-      a {
-        color: #6b6b6b;
-        text-decoration: none;
-      }
-    </style>
   </head>
   <body>
     <div id="app-root"></div>

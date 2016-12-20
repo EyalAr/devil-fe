@@ -1,10 +1,38 @@
-// Breakpoints
-// ------------------------- Source: http://blog.scur.pl/2012/06/variable-media-queries-less-css/
-@highdensity: ~"only screen and (-webkit-min-device-pixel-ratio: 1.5)",
-              ~"only screen and (min--moz-device-pixel-ratio: 1.5)",
-              ~"only screen and (-o-min-device-pixel-ratio: 3/2)",
-              ~"only screen and (min-device-pixel-ratio: 1.5)";
-@mobile:      ~"only screen and (max-width: 529px)";
-@tablet:      ~"only screen and (min-width: 530px) and (max-width: 949px)";
-@desktop:     ~"only screen and (min-width: 950px) and (max-width: 1128px)";
-@desktop-xl:  ~"only screen and (min-width: 1129px)";
+.standard-mq(@minw, @maxw, @rules) {
+  @media
+  only screen and (min-width: @minw) and (max-width: @maxw) {
+    @rules();
+  }
+}
+
+.mobile(@rules) {
+  .standard-mq(0px, 529px, @rules);
+}
+
+.tablet(@rules) {
+  .standard-mq(530px, 949px, @rules);
+}
+
+.desktop(@rules) {
+  .standard-mq(949px, 999999px, @rules);
+}
+
+.desktop-only {
+  visibility: visible;
+  .mobile({
+    visibility: hidden;
+    display: none !important;
+  });
+  .tablet({
+    visibility: hidden;
+    display: none !important;
+  });
+}
+
+.touch-only {
+  visibility: visible;
+  .desktop({
+    visibility: hidden;
+    display: none !important;
+  });
+}

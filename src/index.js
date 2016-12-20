@@ -7,6 +7,7 @@ import routes from "./routes"
 import Root from "./containers/root"
 import history from "./history"
 import store from "./store"
+import "./ui/reset.less"
 
 injectTapEventPlugin()
 

@@ -1,9 +1,15 @@
 @import "../../breakpoints";
 
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .element {
-  height: 100%;
   display: inline-block;
-  margin: 0.5em 5px 0 5px;
+  margin: 0 5px;
 }
 
 .title {
@@ -12,9 +18,6 @@
   margin-right: 10px;
 }
 
-.desktop-only {
-  visibility: hidden;
-  @media @desktop, @desktop-xl {
-    visibility: visible;
-  }
+.hamburger {
+  margin-top: -4px;
 }
