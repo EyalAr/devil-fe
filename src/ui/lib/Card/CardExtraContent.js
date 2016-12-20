@@ -5,7 +5,9 @@ import style from "./style.less"
 const cx = classnames.bind(style)
 
 const CardExtraContent = ({ children }) => (
-  <div>{children}</div>
+  <div className={cx("extraContainer")}>
+    {children}
+  </div>
 )
 
 CardExtraContent.displayName = "UI/lib/Card/ExtraContent"

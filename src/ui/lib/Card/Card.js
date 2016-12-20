@@ -8,7 +8,7 @@ const cx = classnames.bind(style)
 
 const Card = ({ expanded, children }) => {
   return (
-    <div>
+    <div className={cx("container")}>
       { expanded ?
         children :
         Children

@@ -7,7 +7,7 @@ import Markdown from "../../lib/Markdown"
 import SubmitText from "../SubmitText"
 
 const Comment = props => (
-  <Card expanded={props.expanded && props.children.length > 0}>
+  <Card expanded={props.expanded}>
     <CardMainContent>
       <span>
         <Link to={`/user/${props.user.id}`}>{props.user.name}</Link> |&nbsp;

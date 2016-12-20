@@ -5,7 +5,9 @@ import style from "./style.less"
 const cx = classnames.bind(style)
 
 const CardMainContent = ({ children }) => (
-  <div>{children}</div>
+  <div className={cx("mainContainer")}>
+    {children}
+  </div>
 )
 
 CardMainContent.displayName = "UI/lib/Card/MainContent"
