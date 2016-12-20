@@ -1,13 +1,13 @@
 import React from "react"
 import { Link } from "react-router"
 import TextButton from "../../lib/TextButton"
-import style from "./style.css"
+import style from "./style.less"
 
 const ENTER_KEY = 13
 
 const PostEntry = props => {
   return (
-    <div>
+    <div className={style.container}>
       <div className={style.title}>
         <a href={props.url}>{props.title}</a>
       </div>

@@ -1,0 +1,20 @@
+@import "../../breakpoints";
+
+.element {
+  height: 100%;
+  display: inline-block;
+  margin: 0.5em 5px 0 5px;
+}
+
+.title {
+  .element;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.desktop-only {
+  visibility: hidden;
+  @media @desktop, @desktop-xl {
+    visibility: visible;
+  }
+}

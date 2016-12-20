@@ -1,0 +1,12 @@
+.container {
+  transition: max-height 0.5s ease-out;
+  overflow: scroll;
+}
+
+.container.active {
+  max-height: 20rem;
+}
+
+.container:not(.active) {
+  max-height: 0;
+}

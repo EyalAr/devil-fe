@@ -16,12 +16,12 @@ class Menu extends Component {
   }
 
   render () {
-    const anchorEl = this.props.anchor
+    const { anchorOpened, anchorClosed, className } = this.props
     const items = [].concat(this.props.children)
     return (
-      <div className={cx("container")}>
+      <div className={cx("container", className)}>
         <div className={cx("anchor")} onClick={this.toggleOpen}>
-          {anchorEl}
+          {this.state.open ? anchorOpened : anchorClosed}
         </div>
         { this.state.open &&
           <div className={cx("itemsContainer")}>

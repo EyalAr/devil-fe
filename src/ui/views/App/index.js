@@ -4,13 +4,12 @@ import Login from "../../../containers/Login"
 import Register from "../../../containers/Register"
 import SubmitPost from "../../../containers/SubmitPost"
 import TopBar from "../../comps/TopBar"
-import DialogWrapper from "../../lib/DialogWrapper"
+import { DialogMuxer, Dialog } from "../../lib/DialogMuxer"
 import style from "./style.less"
 
 const cx = classnames.bind(style)
 
 const App = props => {
-  const dialogVisible = props.submitPostVisible || props.loginVisible || props.registerVisible
   return (
     <div className={cx("container")}>
       <TopBar
@@ -21,26 +20,29 @@ const App = props => {
         toggleLogin={props.toggleLogin}
         toggleRegister={props.toggleRegister}
         logout={props.logout}/>
-      <div className={cx("body", { dialogVisible })}>
+      <DialogMuxer className={cx("dialog")} classNameInternal={cx("dialogInternal")}>
+        <Dialog
+          title="Submit Post"
+          active={props.loggedIn && props.submitPostVisible}
+          onClose={props.toggleSubmitPost}>
+            <SubmitPost/>
+        </Dialog>
+        <Dialog
+          title="Login"
+          active={!props.loggedIn && props.loginVisible}
+          onClose={props.toggleLogin}>
+            <Login/>
+        </Dialog>
+        <Dialog
+          title="Register"
+          active={!props.loggedIn && props.registerVisible}
+          onClose={props.toggleRegister}>
+            <Register/>
+        </Dialog>
+      </DialogMuxer>
+      <div className={cx("body")}>
         {props.children}
       </div>
-      <DialogWrapper
-        className={cx("dialog", { dialogVisible })}
-        onRequestClose={() => {
-          if (props.loggedIn && props.submitPostVisible) props.toggleSubmitPost()
-          if (!props.loggedIn && props.loginVisible) props.toggleLogin()
-          if (!props.loggedIn && props.registerVisible) props.toggleRegister()
-        }}
-        title={
-          props.loggedIn && props.submitPostVisible ? "Submit Post" :
-          !props.loggedIn && props.loginVisible ? "Login" :
-          !props.loggedIn && props.registerVisible ? "Register" :
-          ""
-        }>
-        { props.loggedIn && props.submitPostVisible && <SubmitPost/> }
-        { !props.loggedIn && props.loginVisible && <Login/> }
-        { !props.loggedIn && props.registerVisible && <Register/> }
-      </DialogWrapper>
     </div>
   )
 }

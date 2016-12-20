@@ -8,7 +8,7 @@ const TextField = ({ hintText, fullWidth, onKeyPress, onChange }) => (
   <input
     type="text"
     placeholder={hintText}
-    className={cx({ fullWidth: fullWidth })}
+    className={cx("element", { fullWidth: fullWidth })}
     onKeyPress={onKeyPress}
     onChange={onChange}/>
 )

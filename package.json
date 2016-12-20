@@ -28,6 +28,7 @@
     "ignore-styles": "^2.0.0",
     "jsdom": "^9.1.0",
     "json-loader": "^0.5.4",
+    "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "mocha": "^2.4.5",
     "react-addons-test-utils": "^15.1.0",
