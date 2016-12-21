@@ -46,9 +46,7 @@ class DialogMuxer extends Component {
     return (
       <div className={cx("container", { active }, className)}>
         <div className={classNameInternal}>
-          <div className={cx("body")}>
-            {title}
-          </div>
+          { !!title && <div className={cx("title")}>{title}</div> }
           <div className={cx("dialogWrapper")}>
             {dialog}
           </div>

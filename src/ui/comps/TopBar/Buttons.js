@@ -1,49 +1,37 @@
 import React from "react"
 import { Link } from "react-router"
 import classnames from "classnames/bind"
-import { Menu, MenuItem } from "../../lib/Menu"
 import TextButton from "../../lib/TextButton"
 import style from "./style.less"
 
 const cx = classnames.bind(style)
 
-const TopBarMenu = props => {
-  const ProfileItem = <MenuItem key="profile"><Link to={`/user/${props.user.id}`}>Profile</Link></MenuItem>
-  const LogoutItem = <MenuItem key="logout"><TextButton onClick={props.logout}>Logout</TextButton></MenuItem>
-  const LoginItem = <MenuItem key="login"><TextButton onClick={props.toggleLogin}>Login</TextButton></MenuItem>
-  const RegisterItem = <MenuItem key="register"><TextButton onClick={props.toggleRegister}>Register</TextButton></MenuItem>
-  return (
-    <Menu
-      className={props.className}
-      anchorClosed={<TextButton>Menu &rarr;</TextButton>}
-      anchorOpened={<TextButton>Menu &larr;</TextButton>}>
-        { props.loggedIn && ProfileItem }
-        { props.loggedIn && LogoutItem }
-        { !props.loggedIn && LoginItem }
-        { !props.loggedIn && RegisterItem }
-    </Menu>
-  )
-}
-
-TopBarMenu.displayName = "UI/TopBar/Menu"
+const Divider = () => (
+  <span className={cx("button", "desktop-only")}> | </span>
+)
 
 const TopBarButtons = props => (
-  <span className={props.className}>
-    <TextButton
-      className={cx("element")}
-      onClick={props.loggedIn ? props.toggleSubmitPost : props.toggleLogin}>
-        Submit
-    </TextButton>
-    <span className={cx("element")}> | </span>
-    <Link className={cx("element")} to="/posts/1/top">All Posts</Link>
-    <span className={cx("element")}> | </span>
-    <TopBarMenu
-      className={cx("element")}
-      loggedIn={props.loggedIn}
-      user={props.user}
-      toggleLogin={props.toggleLogin}
-      toggleRegister={props.toggleRegister}
-      logout={props.logout}/>
+  <span className={cx(props.className)}>
+    <span className={cx("scrollContainer")}>
+      <TextButton
+        className={cx("button")}
+        onClick={props.loggedIn ? props.toggleSubmitPost : props.toggleLogin}>
+          Submit
+      </TextButton>
+      <Divider/>
+      <Link className={cx("button")} to="/posts/1/top">All Posts</Link>
+      <Divider/>
+      { props.loggedIn &&
+        <Link className={cx("button")} to={`/user/${props.user.id}`}>Profile</Link> }
+      { props.loggedIn && <Divider/> }
+      { props.loggedIn &&
+        <TextButton className={cx("button")} onClick={props.logout}>Logout</TextButton> }
+      { !props.loggedIn &&
+        <TextButton className={cx("button")} onClick={props.toggleLogin}>Login</TextButton> }
+      { !props.loggedIn && <Divider/> }
+      { !props.loggedIn &&
+        <TextButton className={cx("button")} onClick={props.toggleRegister}>Register</TextButton> }
+    </span>
   </span>
 )
 

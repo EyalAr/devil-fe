@@ -5,6 +5,7 @@ import LinearProgress from "../../lib/LinearProgress"
 import TextField from "../../lib/TextField"
 import TextButton from "../../lib/TextButton"
 import Message from "../../lib/Message"
+import style from "./style.less"
 
 const ENTER_KEY = 13
 
@@ -15,9 +16,9 @@ const Login = props => {
   const onKeyPress = e => e.keyCode === ENTER_KEY && submit()
   const onChange = e => value = e.target.value
 
-  const CancelButton = () => (<TextButton onClick={props.toggleLogin}>Cancel</TextButton>)
-  const RegisterButton = () => (<TextButton onClick={props.toggleRegister}>Register</TextButton>)
-  const SubmitButton = () => (<TextButton onClick={submit}>Submit</TextButton>)
+  const CancelButton = () => (<TextButton className={style.button} onClick={props.toggleLogin}>Cancel</TextButton>)
+  const RegisterButton = () => (<TextButton className={style.button} onClick={props.toggleRegister}>Register</TextButton>)
+  const SubmitButton = () => (<TextButton className={style.button} onClick={submit}>Submit</TextButton>)
 
   return (
     <div>
@@ -30,14 +31,15 @@ const Login = props => {
               hintText="Enter your e-mail address or login token"
               onKeyPress={onKeyPress}
               onChange={onChange}/>
-            { props.error && <Message>{props.error}</Message> }
+            { props.error && <Message error>{props.error}</Message> }
             { props.received && <Message>Your request has been received. Please check your email.</Message> }
           </div>
       ) }
-      <br/>
-      <CancelButton/>&nbsp;
-      <RegisterButton/>&nbsp;
-      { !props.pending && !props.loggedIn && <SubmitButton/> }
+      <div className={style.buttonsWrapper}>
+        <CancelButton/>
+        <RegisterButton/>
+        { !props.pending && !props.loggedIn && <SubmitButton/> }
+      </div>
     </div>
   )
 }

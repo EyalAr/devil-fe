@@ -6,6 +6,8 @@ export const run = (data, action) => action.error ?
     error: action.error,
     received: false
   }) :
-  data
-    .setIn(["views", "login", "pending"], false)
-    .setIn(["views", "login", "received"], true)
+  data.mergeIn(["views", "login"], {
+    pending: false,
+    error: false,
+    received: true
+  })

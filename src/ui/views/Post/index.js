@@ -10,8 +10,8 @@ import style from "./style.css"
 
 const Post = props => (
   <div>
-    { props.pending && <LinearProgress mode="indeterminate"/> }
-    { !props.pending && props.error && <Message>{props.error}</Message> }
+    { props.pending && <LinearProgress/> }
+    { !props.pending && props.error && <Message error>{props.error}</Message> }
     { !props.pending && !props.error && (
       <div>
         <div className={style.title}>
@@ -21,23 +21,24 @@ const Post = props => (
           By <Link to={`/user/${props.user.id}`}>{props.user.name}</Link>
         </div>
         <div className={style.buttonsWrapper}>
-          <TextButton onClick={() => {
+          <TextButton className={style.button} onClick={() => {
             if (props.loggedIn) {
               props.submitCommentCbs.onVisibleToggle()
             } else {
               props.toggleLogin()
             }
           }}>Comment</TextButton>
-          <TextButton onClick={() => props.togglePreview(props.params.id)}>Preview</TextButton>
-          <TextButton onClick={() => {}}>Share</TextButton>
+          <TextButton className={style.button} onClick={() => props.togglePreview(props.params.id)}>Preview</TextButton>
+          <TextButton className={style.button} onClick={() => {}}>Share</TextButton>
         </div>
         { props.preview && <Preview url={props.url} className={style.postPreview}/> }
         { props.submitCommentView.visible &&
           <SubmitText
             {...props.submitCommentView}
             {...props.submitCommentCbs}
-            size={10} maxSize={20}
-            id={`submit-comment-${props.params.id}`}/> }
+            multiline={true}
+            size={10}
+            className={style.submitWrapper}/> }
         { props.comments.length > 0 && <div className={style.commentsWrapper}>
           { props.comments.map(c => (
             <Comment

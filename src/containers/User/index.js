@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { List } from "immutable"
 import UserUI from "../../ui/views/User"
 import apiGetUserRequest from "../../actions/apiGetUserRequest"
 import gotoPost from "../../actions/gotoPost"
@@ -37,7 +38,7 @@ const mapStateToProps = (state, props) => {
 
   const name = user.get("name")
   const updatedAt = userView.get("updatedAt")
-  const posts = user.get("posts").map(id => {
+  const posts = user.get("posts", List()).map(id => {
     return entities.getIn(["posts", id])
   }).toJS()
   return { name, updatedAt, posts }

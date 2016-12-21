@@ -6,7 +6,7 @@ import Message from "../../lib/Message"
 const Posts = props => (
   <div>
     { props.pending && <LinearProgress/> }
-    { !props.pending && props.error && <Message>{props.error}</Message> }
+    { !props.pending && props.error && <Message error>{props.error}</Message> }
     { !props.pending && !props.error && (
       <div>
         {props.posts.map(p => (

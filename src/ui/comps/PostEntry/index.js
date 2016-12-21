@@ -12,7 +12,7 @@ const PostEntry = props => {
         <a href={props.url}>{props.title}</a>
       </div>
       <div className={style.subtitle}>
-        { props.user && <Link to={`/user/${props.user.id}`}>By {props.user.name}</Link> }
+        { props.user && <Link to={`/user/${props.user.id}`}>{props.user.name}</Link> }
         { props.user && <span> | </span> }
         <TextButton onClick={() => props.gotoPost(props.id)}>
           {props.numComments} comment{props.numComments !== 1 ? "s" : ""}

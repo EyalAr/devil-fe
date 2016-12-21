@@ -1,16 +1,20 @@
 .title {
-  font-size: 1.1em;
+  font-size: 2em;
   margin: 0.5em;
 }
 
 .subtitle {
-  font-size: 0.9em;
+  font-size: 1.2em;
   margin: 0.5em;
-  padding-left: 10px;
+  padding-left: 0.5em;
 }
 
 .buttonsWrapper {
-  margin: 5px 0;
+  margin: 1em;
+}
+
+.button {
+  margin-right: 1em;
 }
 
 .commentsWrapper {
@@ -21,4 +25,8 @@
   text-align: center;
   height: 400px;
   overflow: scroll;
+}
+
+.submitWrapper {
+  margin: 1.5em 0.5em;
 }

@@ -9,6 +9,9 @@ export default {
     token: storedToken || null,
     user: storedUser ? storedUser.id : null,
     views: Map({
+      app: Map({
+        mobileMenuVisible: false
+      }),
       postsList: Map({
         pending: true,
         error: null,

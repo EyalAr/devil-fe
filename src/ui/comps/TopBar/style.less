@@ -7,17 +7,40 @@
   align-items: center;
 }
 
-.element {
+.buttonsContainer {
   display: inline-block;
+  height: 100%;
+  overflow: hidden;
+  .mobile({
+    height: 2rem;
+  })
+}
+
+.scrollContainer {
+  display: inline-block;
+  height: 200%;
+  width: 100%;
+  white-space: nowrap;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+
+.button {
+  display: inline-block;
+  position: relative;
+  top: 25%;
+  transform: translateY(-50%);
   margin: 0 5px;
 }
 
 .title {
-  .element;
   font-weight: bold;
-  margin-right: 10px;
+  margin: 0 5px;
 }
 
 .hamburger {
-  margin-top: -4px;
+  margin: 0 5px;
+  display: flex;
+  align-items: center;
+  font-size: 1.3em;
 }

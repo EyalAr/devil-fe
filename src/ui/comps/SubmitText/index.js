@@ -4,35 +4,32 @@ import TextButton from "../../lib/TextButton"
 import Markdown from "../../lib/Markdown"
 import LinearProgress from "../../lib/LinearProgress"
 import Message from "../../lib/Message"
-
-const DEFAULT_TEXTAREA_STYLE = {
-  boxShadow: "0px 0px 5px 0px #c7c7c7"
-}
+import style from "./style.less"
 
 const SubmitText = ({
   pending, error, preview, text, size, maxSize, id, className,
-  textareaStyle, onChange, onPreviewToggle, onSubmit
+  multiline, onChange, onPreviewToggle, onSubmit
 }) => {
   return (
     <div className={className}>
       <div>
-        { pending && <LinearProgress mode="indeterminate"/> }
+        { pending && <LinearProgress/> }
         { !pending && preview && <Markdown source={text}/> }
         { !pending && !preview && <TextField
             id={id}
+            className={style.textField}
             value={text}
-            multiLine={true}
+            multiline={multiline}
             fullWidth={true}
             rows={size || 2}
             rowsMax={maxSize || size || 4}
-            textareaStyle={textareaStyle || DEFAULT_TEXTAREA_STYLE}
             onChange={e => onChange(e.target.value)}/>
         }
       </div>
       { !pending && error && <Message>{error}</Message> }
-      { !pending && <div>
-          <TextButton onClick={onPreviewToggle}>{preview ? "Edit" : "Preview"}</TextButton>&nbsp;
-          <TextButton onClick={() => onSubmit(text)}>Send</TextButton>
+      { !pending && <div className={style.buttonsWrapper}>
+          <TextButton className={style.button} onClick={onPreviewToggle}>{preview ? "Edit" : "Preview"}</TextButton>
+          <TextButton className={style.button} onClick={() => onSubmit(text)}>Send</TextButton>
         </div>
       }
     </div>

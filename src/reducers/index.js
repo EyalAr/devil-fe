@@ -17,6 +17,7 @@ import * as toggleSubmitPost from "./toggleSubmitPost"
 import * as submitPostResponse from "./submitPostResponse"
 import * as toggleLogin from "./toggleLogin"
 import * as toggleRegister from "./toggleRegister"
+import * as toggleMobileMenu from "./toggleMobileMenu"
 import * as submitCommentRequest from "./submitCommentRequest"
 import * as submitCommentResponse from "./submitCommentResponse"
 import * as toggleSubmitCommentVisible from "./toggleSubmitCommentVisible"
@@ -46,6 +47,7 @@ const REDUCERS = [
   submitPostResponse,
   toggleLogin,
   toggleRegister,
+  toggleMobileMenu,
   registerRequest,
   registerResponse,
   submitCommentRequest,

@@ -4,6 +4,7 @@ import Login from "../../../containers/Login"
 import Register from "../../../containers/Register"
 import SubmitPost from "../../../containers/SubmitPost"
 import TopBar from "../../comps/TopBar"
+import Buttons from "../../comps/TopBar/Buttons"
 import { DialogMuxer, Dialog } from "../../lib/DialogMuxer"
 import style from "./style.less"
 
@@ -19,8 +20,17 @@ const App = props => {
         toggleSubmitPost={props.toggleSubmitPost}
         toggleLogin={props.toggleLogin}
         toggleRegister={props.toggleRegister}
+        toggleMobileMenu={props.toggleMobileMenu}
         logout={props.logout}/>
-      <DialogMuxer className={cx("dialog")} classNameInternal={cx("dialogInternal")}>
+      <Buttons
+        className={cx("mobile-only", "mobileMenu", { mobileMenuVisible: props.mobileMenuVisible })}
+        loggedIn={props.loggedIn}
+        user={props.user}
+        toggleSubmitPost={props.toggleSubmitPost}
+        toggleLogin={props.toggleLogin}
+        toggleRegister={props.toggleRegister}
+        logout={props.logout}/>
+      <DialogMuxer className={cx("dialog", { mobileMenuVisible: props.mobileMenuVisible })} classNameInternal={cx("dialogInternal")}>
         <Dialog
           title="Submit Post"
           active={props.loggedIn && props.submitPostVisible}

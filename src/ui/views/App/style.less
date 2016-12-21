@@ -44,3 +44,19 @@
 .dialogInternal {
   padding: 10px;
 }
+
+.mobileMenu {
+  .base;
+  z-index: 1;
+  top: 3rem;
+  height: 0;
+  overflow: hidden;
+  background: white;
+  text-align: center;
+  transition: height 0.25s ease-in;
+  &.mobileMenuVisible {
+    height: 4rem;
+    border-bottom: 1px solid #eaeaea;
+    transition: height 0.25s ease-out;
+  }
+}

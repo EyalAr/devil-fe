@@ -5,18 +5,37 @@ import { Card, CardMainContent, CardExtraContent } from "../../lib/Card"
 import TextButton from "../../lib/TextButton"
 import Markdown from "../../lib/Markdown"
 import SubmitText from "../SubmitText"
+import style from "./style.less"
+
+const SHORT_TIME_UNITS = {
+  "second": "s",
+  "minute": "m",
+  "hour": "h",
+  "day": "d",
+  "week": "w",
+  "month": "mth",
+  "year": "yr"
+}
+const timeAgoFormatter = (value, unit, suffix, date) => `${value}${SHORT_TIME_UNITS[unit]}`
 
 const Comment = props => (
   <Card expanded={props.expanded}>
     <CardMainContent>
-      <span>
-        <Link to={`/user/${props.user.id}`}>{props.user.name}</Link> |&nbsp;
-        <TimeAgo date={props.createdAt}/> |&nbsp;
-        <TextButton onClick={() => props.submitReplyCbs.onVisibleToggle(props.id)}>Reply</TextButton>
-      </span>
-      <TextButton onClick={() => props.toggleExpanded(props.id)}>
+      <TextButton className={style.expander} onClick={() => props.toggleExpanded(props.id)}>
         {props.expanded ? "[-]" : "[+]"}
       </TextButton>
+      <span>
+        <Link className={style.titleElement} to={`/user/${props.user.id}`}>{props.user.name}</Link>
+        <TimeAgo className={`mobile-only ${style.titleElement}`} date={props.createdAt} formatter={timeAgoFormatter}/>
+        <TimeAgo className={`no-mobile ${style.titleElement}`} date={props.createdAt}/>
+        { props.expanded &&
+          <TextButton
+            className={style.titleElement}
+            onClick={() => props.submitReplyCbs.onVisibleToggle(props.id)}>
+              <span className="no-mobile">Reply</span>
+              <span className="mobile-only">[R]</span>
+          </TextButton> }
+      </span>
     </CardMainContent>
     { props.submitReplyView.visible &&
       <CardMainContent>
@@ -25,8 +44,9 @@ const Comment = props => (
           onChange={text => props.submitReplyCbs.onChange(props.id, text)}
           onPreviewToggle={() => props.submitReplyCbs.onPreviewToggle(props.id)}
           onSubmit={text => props.submitReplyCbs.onSubmit(props.id, text)}
-          size={5} maxSize={10}
-          id={`submit-reply-${props.id}`}/>
+          multiline={true}
+          size={5}
+          className={style.commentWrapper}/>
       </CardMainContent> }
     <CardExtraContent>
       <Markdown source={props.text}/>

@@ -4,13 +4,26 @@ import style from "./style.css"
 
 const cx = classnames.bind(style)
 
-const TextField = ({ hintText, fullWidth, onKeyPress, onChange }) => (
-  <input
-    type="text"
-    placeholder={hintText}
-    className={cx("element", { fullWidth: fullWidth })}
-    onKeyPress={onKeyPress}
-    onChange={onChange}/>
+const TextField = ({
+  hintText, fullWidth, className, multiline, rows, value,
+  onKeyPress, onChange
+}) => (
+  multiline ?
+    <textarea
+      placeholder={hintText}
+      value={value}
+      rows={rows}
+      className={cx("element", className, { fullWidth })}
+      onKeyPress={onKeyPress}
+      onChange={onChange}/> :
+    <input
+      type="text"
+      placeholder={hintText}
+      value={value}
+      className={cx("element", className, { fullWidth })}
+      onKeyPress={onKeyPress}
+      onChange={onChange}/>
+
 )
 
 TextField.displayName = "UI/lib/TextField"

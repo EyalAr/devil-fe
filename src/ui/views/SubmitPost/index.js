@@ -3,6 +3,7 @@ import LinearProgress from "../../lib/LinearProgress"
 import TextField from "../../lib/TextField"
 import TextButton from "../../lib/TextButton"
 import Message from "../../lib/Message"
+import style from "./style.less"
 
 const ENTER_KEY = 13
 
@@ -15,12 +16,12 @@ const SubmitPost = props => {
   const onTitleChange = e => title = e.target.value
   const onUrlChange = e => url = e.target.value
 
-  const CancelButton = () => (<TextButton onClick={props.toggleSubmitPost}>Cancel</TextButton>)
-  const SubmitButton = () => (<TextButton onClick={submit}>Submit</TextButton>)
+  const CancelButton = () => (<TextButton className={style.button} onClick={props.toggleSubmitPost}>Cancel</TextButton>)
+  const SubmitButton = () => (<TextButton className={style.button} onClick={submit}>Submit</TextButton>)
 
   return (
     <div>
-      { props.pending && <LinearProgress mode="indeterminate"/> }
+      { props.pending && <LinearProgress/> }
       { !props.pending && (
           <div>
             <TextField
@@ -33,12 +34,13 @@ const SubmitPost = props => {
               hintText="Post URL"
               onKeyPress={onKeyPress}
               onChange={onUrlChange}/>
-            { props.error && <Message>{props.error}</Message> }
+            { props.error && <Message error>{props.error}</Message> }
           </div>
       ) }
-      <br/>
-      <CancelButton/>&nbsp;
-      { !props.pending && <SubmitButton/> }
+      <div className={style.buttonsWrapper}>
+        <CancelButton/>
+        { !props.pending && <SubmitButton/> }
+      </div>
     </div>
   )
 }

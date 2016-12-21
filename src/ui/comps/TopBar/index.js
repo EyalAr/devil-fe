@@ -8,11 +8,15 @@ const cx = classnames.bind(style)
 
 const TopBar = props => (
   <div className={cx("container", props.className)}>
-    <TextButton className={cx("element", "hamburger", "touch-only")}>&#9776;</TextButton>
+    <TextButton
+      className={cx("hamburger", "mobile-only")}
+      onClick={props.toggleMobileMenu}>
+        <i className="material-icons">menu</i>
+    </TextButton>
     <span className={cx("title")}>
       {"DevIL" + (props.loggedIn ? ` [${props.user.name}]` : "")}
     </span>
-    <Buttons {...props} className={cx("desktop-only")}/>
+    <Buttons {...props} className={cx("no-mobile", "buttonsContainer")}/>
   </div>
 )
 
